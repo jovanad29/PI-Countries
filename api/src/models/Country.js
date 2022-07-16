@@ -11,7 +11,12 @@ module.exports = (sequelize) => {
       unique: true,
       validate: {
         isAlpha: true,
-        isUppercase: true
+        isUppercase: true,
+        isThree: (val) => {
+          if(val.length !== 3){
+            throw Error('country id must be 3 uppercase letters')
+          }
+        }
       }
     },
     name: {
