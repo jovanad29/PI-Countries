@@ -8,15 +8,25 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(3),
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        isAlpha: true,
+        isUppercase: true
+      }
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
+      }
     },
     flag_img: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isUrl: true
+      }
     },
     continent: {
       type: DataTypes.STRING,
@@ -27,13 +37,22 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     subregion: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
+      }
     },
     area: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: true
+      }
     },
     population: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: true
+      }
     }
   });
 };
