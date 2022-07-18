@@ -34,12 +34,15 @@ module.exports = (sequelize) => {
       }
     },
     continent: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM(['Oceania', 'Asia', 'Europe', 'North America', 'Africa', 'South America']),
       allowNull: false
     },
     capital: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
+      }
     },
     subregion: {
       type: DataTypes.STRING,
