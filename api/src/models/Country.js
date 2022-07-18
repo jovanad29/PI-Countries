@@ -46,18 +46,21 @@ module.exports = (sequelize) => {
     },
     subregion: {
       type: DataTypes.STRING,
+      allowNull: true,
       validate: {
         is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
       }
     },
     area: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       validate: {
         isNumeric: true
       }
     },
     population: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       validate: {
         isNumeric: true
       }
