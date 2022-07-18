@@ -18,17 +18,11 @@ module.exports = (sequelize) => {
       }
     },
     difficulty: {
-        type: DataTypes.INTEGER,
-        validate: {
-            isInRange: (val) => {
-                if (val < 1 || val > 5){
-                    throw Error('difficulty must be a value between 1 and 5')
-                }
-            }
-        }
+        type: DataTypes.ENUM(['1', '2', '3', '4', '5']),
+        allowNull: false
     },
-    duration: {
-      type: DataTypes.STRING,
+    duration: { // en días? en horas?
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     season: {
