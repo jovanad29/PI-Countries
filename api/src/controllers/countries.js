@@ -12,6 +12,9 @@ exports.getCountryByName = async (req,res) => {
         where: { name: req.query.name },
         include: [Activity]
     }).catch(e => console.log(e))
+    if (country === null) return res.status(404).json({
+        error: "Country doesn't exist"
+    })
     return res.json(country)
 }
 
@@ -21,5 +24,8 @@ exports.getCountryById = async (req,res) => {
         where: {country_id: id},
         include: [Activity]
     }).catch(e => console.log(e))
+    if (country === null) return res.status(404).json({
+        error: "Country doesn't exist"
+    })
     return res.json(country)
 }
