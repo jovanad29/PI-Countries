@@ -19,7 +19,7 @@ conn.sync({ force: true }).then( async () => {
         }
     })
     Country.bulkCreate(countries) // refactorizar
-    .then(data => console.log(data))
+    .then(data => console.log(JSON.stringify(data,null,2)))
     .catch(e => console.log(e))
     console.log('Successful Sync');
 });
