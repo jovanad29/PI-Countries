@@ -65,5 +65,5 @@ module.exports = (sequelize) => {
         isNumeric: true
       }
     }
-  });
+  }, { timestamps: false });
 };
