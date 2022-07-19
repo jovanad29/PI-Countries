@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getCountries, getCountryByName } = require('../controllers/getCountries');
+const { getCountries, getCountryByName, getCountryById } = require('../controllers/getCountries');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -14,5 +14,7 @@ router.get('/countries', (req,res) => {
     }
     return getCountries(req,res)
 })
+
+router.get('/countries/:id',getCountryById)
 
 module.exports = router;
