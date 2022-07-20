@@ -6,7 +6,21 @@ exports.postActivity = async (req,res) => {
     if (!name || !difficulty || !duration || !season || !countries.length){
         return res.status(400).json({
             error: {
-                msg: "name, difficulty, duration, season and countries cannot be empty",
+                message: "name, difficulty, duration, season and countries cannot be empty",
+                values: {
+                    name,
+                    difficulty,
+                    duration,
+                    season,
+                    countries
+                }
+            }
+        })
+    }
+    if ((await Activity.findAll({ where: {name:name} })).length){
+        return res.status(400).json({
+            error:{
+                message: `Activity "${name}" already exists`,
                 values: {
                     name,
                     difficulty,
@@ -22,11 +36,23 @@ exports.postActivity = async (req,res) => {
         difficulty,
         duration,
         season
-    }).catch(e => res.status(500).json(e))
-    countries.map( async c => {
-        const country = await Country.findOne({ where: { country_id: c } })
-        .catch(e => res.status(500).json(e))
-        activity.addCountry(country)
+    }).catch(e => {
+        return res.status(500).json({
+            error: {
+                message: "Server Error",
+                values: {
+                    name,
+                    difficulty,
+                    duration,
+                    season,
+                    countries
+                }
+            }
+        })
     })
-    return res.json(activity)
+    countries.forEach(async c => {
+        const country = await Country.findOne({ where: { country_id: c } })
+        if (country) activity.addCountry(country)
+    });
+    return res.status(201).json(activity)
 }
