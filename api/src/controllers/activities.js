@@ -52,7 +52,10 @@ exports.postActivity = async (req,res) => {
     })
     countries.forEach(async c => {
         const country = await Country.findOne({ where: { country_id: c } })
-        if (country) activity.addCountry(country)
+        const getMethods = (obj) => Object.getOwnPropertyNames(obj)
+        console.log(getMethods(country))
+        // console.log(await activity.addCountry(country))
+        if (country !== null) country.addActivity(activity)
     });
     return res.status(201).json(activity)
 }

@@ -1,5 +1,6 @@
 
 const { Country, Activity } = require('../db')
+const { Op } = require('sequelize')
 
 exports.getCountries = async (req,res) => {
     const countries = await Country.findAll({ include: [Activity] })
@@ -8,9 +9,13 @@ exports.getCountries = async (req,res) => {
 }
 
 exports.getCountryByName = async (req,res) => {
-    const country = await Country.findOne({
-        where: { name: req.query.name },
-        include: [Activity]
+    const country = await Country.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%${req.query.name}%`
+            }
+        },
+        include: [{model: Activity}] //, attributes: {exclude: ['country_activity'] }}]
     }).catch(e => console.log(e))
     if (country === null) return res.status(404).json({
         error: "Country doesn't exist"
