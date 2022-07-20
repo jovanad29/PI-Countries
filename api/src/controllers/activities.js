@@ -17,7 +17,7 @@ exports.postActivity = async (req,res) => {
             }
         })
     }
-    if ((await Activity.findAll({ where: {name:name} })).length){
+    if ((await Activity.findAll({ where: {name:name} })).length){ // refactor
         return res.status(400).json({
             error:{
                 message: `Activity "${name}" already exists`,
