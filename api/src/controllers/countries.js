@@ -12,7 +12,7 @@ exports.getCountryByName = async (req,res) => {
     const country = await Country.findAll({
         where: {
             name: {
-                [Op.iLike]: `%${req.query.name}%`
+                [Op.iLike]: `${req.query.name}%`
             }
         },
         include: [{model: Activity}] //, attributes: {exclude: ['country_activity'] }}]
