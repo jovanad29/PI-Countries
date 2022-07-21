@@ -7,13 +7,7 @@ exports.postActivity = async (req,res) => {
         return res.status(400).json({
             error: {
                 message: "name, difficulty, duration, season and countries cannot be empty",
-                values: {
-                    name,
-                    difficulty,
-                    duration,
-                    season,
-                    countries
-                }
+                values: {...req.body}
             }
         })
     }
@@ -21,13 +15,7 @@ exports.postActivity = async (req,res) => {
         return res.status(400).json({
             error:{
                 message: `Activity "${name}" already exists`,
-                values: {
-                    name,
-                    difficulty,
-                    duration,
-                    season,
-                    countries
-                }
+                values: {...req.body}
             }
         })
     }
@@ -40,13 +28,7 @@ exports.postActivity = async (req,res) => {
         return res.status(500).json({
             error: {
                 message: "Server Error",
-                values: {
-                    name,
-                    difficulty,
-                    duration,
-                    season,
-                    countries
-                }
+                values: {...req.body}
             }
         })
     })
