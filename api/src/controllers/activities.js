@@ -27,7 +27,7 @@ exports.postActivity = async (req,res) => {
     }).catch(e => {
         return res.status(500).json({
             error: {
-                message: "Server Error",
+                message: "Error while creating resource",
                 values: {...req.body}
             }
         })
