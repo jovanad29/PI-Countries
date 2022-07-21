@@ -33,7 +33,7 @@ exports.postActivity = async (req,res) => {
         })
     })
     countries.forEach(async c => {
-        const country = await Country.findOne({ where: { country_id: c } })
+        const country = await Country.findByPk(c.toUpperCase())
         const getMethods = (obj) => Object.getOwnPropertyNames(obj)
         console.log(getMethods(country))
         // console.log(await activity.addCountry(country))
