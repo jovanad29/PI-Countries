@@ -1,5 +1,6 @@
 
 const { Country, Activity } = require('../db')
+const { Op } = require('sequelize')
 
 exports.postActivity = async (req,res) => {
     const { name,  difficulty, duration, season, countries} = req.body
@@ -11,7 +12,14 @@ exports.postActivity = async (req,res) => {
             }
         })
     }
-    if ((await Activity.findAll({ where: {name:name} })).length){ // refactor
+    const prevActivity = await Activity.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%${name}%`
+            }
+        }
+    })
+    if (prevActivity.length){
         return res.status(400).json({
             error:{
                 message: `Activity "${name}" already exists`,
@@ -20,7 +28,7 @@ exports.postActivity = async (req,res) => {
         })
     }
     const activity = await Activity.create({
-        name,
+        name: name.split(" ").map( str => str[0].toUpperCase() + str.slice(1).toLowerCase()).join(" "),
         difficulty,
         duration,
         season
