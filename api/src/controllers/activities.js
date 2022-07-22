@@ -6,6 +6,18 @@ exports.getActivities = async (req,res) => {
     return res.json(await Activity.findAll({ include: [Country] }))
 }
 
+exports.getActivityById = async (req,res) => {
+    const { id } = req.params
+    const activity = await Activity.findByPk(id,{include: [Country]})
+    if (activity === null) return res.status(404).json({
+        error: {
+            message: "Activity doesn't exist",
+            values: {...req.params}
+        }
+    })
+    return res.json(activity)
+}
+
 exports.postActivity = async (req,res) => {
     const { name,  difficulty, duration, season, countries} = req.body
     if (!name || !difficulty || !duration || !season || !countries.length){
