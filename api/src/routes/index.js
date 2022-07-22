@@ -6,7 +6,7 @@ const {
     getActivities,
     getActivityById,
     addCountryToActivity
-} = require('../controllers/Activities');
+} = require('../controllers/activities');
 const {
     getCountries,
     getCountryByName,
