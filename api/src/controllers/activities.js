@@ -47,3 +47,25 @@ exports.postActivity = async (req,res) => {
     });
     return res.status(201).json(activity)
 }
+
+exports.removeCountryFromActivity = async (req, res) => {
+    // console.log(await country.removeActivity(await Activity.findOne({where: {name: "actividad uno"}})))
+    // console.log(await country.getActivities())
+    const { c_id, a_id } = req.params
+    const country = await Country.findByPk(c_id)
+    if (!country) return res.status(404).json({
+        error: {
+            message: "Country doesn't exist",
+            values: {c_id}
+        }
+    })
+    const activity = await Activity.findByPk(a_id, {include: [Country]})
+    if (!activity) return res.status(404).json({
+        error: {
+            message: "Activity doesn't exist",
+            values: {a_id}
+        }
+    })
+    await activity.removeCountry(country)
+    return res.status(204).json({})
+}
