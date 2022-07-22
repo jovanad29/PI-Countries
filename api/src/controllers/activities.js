@@ -88,7 +88,7 @@ exports.updateActivity = async (req,res) => {
             return res.status(500).json({
                 error: {
                     message: "Error while updating resource",
-                    values: {...req.body}
+                    values: {id, ...req.body}
                 }
             })
         })
