@@ -1,6 +1,11 @@
 const { Router } = require('express');
 const { postActivity } = require('../controllers/Activities');
-const { getCountries, getCountryByName, getCountryById } = require('../controllers/countries');
+const {
+    getCountries,
+    getCountryByName,
+    getCountryById,
+    removeActivityFromCountry
+} = require('../controllers/countries');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -19,5 +24,7 @@ router.get('/countries', (req,res) => {
 router.get('/countries/:id',getCountryById)
 
 router.post('/activities', postActivity)
+
+router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
 
 module.exports = router;
