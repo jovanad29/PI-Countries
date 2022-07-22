@@ -46,7 +46,6 @@ exports.postActivity = async (req,res) => {
     })
     countries.forEach(async c => {
         const country = await Country.findByPk(c.toUpperCase())
-        // console.log(await activity.addCountry(country))
         if (country !== null) country.addActivity(activity)
     });
     return res.status(201).json(activity)
@@ -84,8 +83,6 @@ exports.updateActivity = async (req,res) => {
 }
 
 exports.removeCountryFromActivity = async (req, res) => {
-    // console.log(await country.removeActivity(await Activity.findOne({where: {name: "actividad uno"}})))
-    // console.log(await country.getActivities())
     const { c_id, a_id } = req.params
     const country = await Country.findByPk(c_id)
     if (!country) return res.status(404).json({

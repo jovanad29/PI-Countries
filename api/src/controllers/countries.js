@@ -38,8 +38,6 @@ exports.getCountryById = async (req,res) => {
 }
 
 exports.removeActivityFromCountry = async (req, res) => {
-    // console.log(await country.removeActivity(await Activity.findOne({where: {name: "actividad uno"}})))
-    // console.log(await country.getActivities())
     const { c_id, a_id } = req.params
     const activity = await Activity.findByPk(a_id)
     if (!activity) return res.status(404).json({
