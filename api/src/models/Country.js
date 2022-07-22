@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       }
     },
     flag_img: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
       validate: {
         isUrl: true
