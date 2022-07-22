@@ -2,6 +2,10 @@
 const { Country, Activity } = require('../db')
 const { Op } = require('sequelize')
 
+exports.getActivities = async (req,res) => {
+    return res.json(await Activity.findAll({ include: [Country] }))
+}
+
 exports.postActivity = async (req,res) => {
     const { name,  difficulty, duration, season, countries} = req.body
     if (!name || !difficulty || !duration || !season || !countries.length){
@@ -50,10 +54,10 @@ exports.postActivity = async (req,res) => {
 
 exports.updateActivity = async (req,res) => {
     const { id, name,  difficulty, duration, season} = req.body
-    if (!name || !difficulty || !duration || !season){
+    if (!id || !name || !difficulty || !duration || !season){
         return res.status(400).json({
             error: {
-                message: "name, difficulty, duration and season cannot be empty",
+                message: "id, name, difficulty, duration and season cannot be empty",
                 values: {...req.body}
             }
         })
