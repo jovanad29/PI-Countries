@@ -33,7 +33,7 @@ router.get('/activities', getActivities)
 router.get('/activities/:id',getActivityById)
 router.post('/activities', postActivity)
 router.put('/activities/:id', updateActivity)
-router.delete('/activities/:a_id/countries/:a_id',removeCountryFromActivity)
+router.delete('/activities/:a_id/countries/:c_id',removeCountryFromActivity)
 
 
 
