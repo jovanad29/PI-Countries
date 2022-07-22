@@ -23,13 +23,13 @@ router.get('/countries', (req,res) => {
     }
     return getCountries(req,res)
 })
-
 router.get('/countries/:id',getCountryById)
-
-router.post('/activities', postActivity)
-
 router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
 
+
+router.post('/activities', postActivity)
 router.delete('/activities/:a_id/countries/:a_id',removeCountryFromActivity)
+
+
 
 module.exports = router;
