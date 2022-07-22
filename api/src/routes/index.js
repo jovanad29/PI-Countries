@@ -1,8 +1,10 @@
 const { Router } = require('express');
+const { routes } = require('../app');
 const {
     postActivity,
     updateActivity,
-    removeCountryFromActivity
+    removeCountryFromActivity,
+    getActivities
 } = require('../controllers/Activities');
 const {
     getCountries,
@@ -27,7 +29,7 @@ router.get('/countries', (req,res) => {
 router.get('/countries/:id',getCountryById)
 router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
 
-
+routes.get('/activities', getActivities)
 router.post('/activities', postActivity)
 router.put('/activities/:id', updateActivity)
 router.delete('/activities/:a_id/countries/:a_id',removeCountryFromActivity)
