@@ -24,7 +24,7 @@ exports.postActivity = async (req,res) => {
         }
     })
     if (prevActivity.length){
-        return res.status(400).json({
+        return res.status(409).json({
             error:{
                 message: `Activity "${name}" already exists`,
                 values: {...req.body}
