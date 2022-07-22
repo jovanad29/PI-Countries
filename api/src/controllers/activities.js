@@ -64,12 +64,13 @@ exports.postActivity = async (req,res) => {
 }
 
 exports.updateActivity = async (req,res) => {
-    const { id, name,  difficulty, duration, season} = req.body
+    const { name,  difficulty, duration, season} = req.body
+    const { id } = req.params
     if (!id || !name || !difficulty || !duration || !season){
         return res.status(400).json({
             error: {
                 message: "id, name, difficulty, duration and season cannot be empty",
-                values: {...req.body}
+                values: {id, ...req.body}
             }
         })
     }
