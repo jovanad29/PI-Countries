@@ -4,7 +4,8 @@ const {
     updateActivity,
     removeCountryFromActivity,
     getActivities,
-    getActivityById
+    getActivityById,
+    addCountryToActivity
 } = require('../controllers/Activities');
 const {
     getCountries,
@@ -30,10 +31,11 @@ router.get('/countries/:id',getCountryById)
 router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
 
 router.get('/activities', getActivities)
-router.get('/activities/:id',getActivityById)
+router.get('/activities/:id', getActivityById)
 router.post('/activities', postActivity)
+router.post('/activities/:a_id/countries/:c_id', addCountryToActivity)
 router.put('/activities/:id', updateActivity)
-router.delete('/activities/:a_id/countries/:c_id',removeCountryFromActivity)
+router.delete('/activities/:a_id/countries/:c_id', removeCountryFromActivity)
 
 
 
