@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const {
     postActivity,
+    updateActivity,
     removeCountryFromActivity
 } = require('../controllers/Activities');
 const {
@@ -28,6 +29,7 @@ router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
 
 
 router.post('/activities', postActivity)
+router.put('/activities/:id', updateActivity)
 router.delete('/activities/:a_id/countries/:a_id',removeCountryFromActivity)
 
 
