@@ -58,9 +58,10 @@ exports.postActivity = async (req,res) => {
     })
     countries.forEach(async c => {
         const country = await Country.findByPk(c.toUpperCase())
-        if (country !== null) country.addActivity(activity)
+        if (country !== null) await country.addActivity(activity)
     });
-    return res.status(201).json(activity)
+    const newActivity = await Activity.findByPk(activity.activity_id, {include: [Country]})
+    return res.status(201).json(newActivity)
 }
 
 exports.updateActivity = async (req,res) => {
