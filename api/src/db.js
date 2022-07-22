@@ -11,7 +11,8 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   port: DB_PORT,
   define: {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false 
   }
 });
 const basename = path.basename(__filename);
@@ -38,8 +39,12 @@ const { Country, Activity } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Country.belongsToMany(Activity, { through: 'country_activity', foreignKey: 'country_id'  })
-Activity.belongsToMany(Country, { through: 'country_activity', foreignKey: 'activity_id' })
+Country.belongsToMany(
+  Activity, 
+  { through: 'country_activity', foreignKey: 'country_id'})
+Activity.belongsToMany(
+  Country,
+  { through: 'country_activity', foreignKey: 'activity_id'})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
