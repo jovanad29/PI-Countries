@@ -95,6 +95,26 @@ exports.updateActivity = async (req,res) => {
     return res.status(200).json(activity)
 }
 
+exports.addCountryToActivity = async (req,res) => {
+    const { a_id, c_id } = req.params
+    const activity = await Activity.findByPk(a_id, {include: [Country]})
+    if (activity === null) return res.status(404).json({
+        error : {
+            message: "Activity doesn't exist",
+            values: {a_id,c_id}
+        }
+    })
+    const country = await Country.findByPk(c_id)
+    if (country === null) return res.status(404).json({
+        error : {
+            message: "Country doesn't exist",
+            values: {a_id,c_id}
+        }
+    })
+    await activity.addCountry(country)
+    return res.status(201).json(activity)
+}
+
 exports.removeCountryFromActivity = async (req, res) => {
     const { c_id, a_id } = req.params
     const country = await Country.findByPk(c_id)
