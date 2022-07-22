@@ -113,7 +113,8 @@ exports.addCountryToActivity = async (req,res) => {
         }
     })
     await activity.addCountry(country)
-    return res.status(201).json(activity)
+    const newActivity = await Activity.findByPk(activity.activity_id, {include: [Country]})
+    return res.status(201).json(newActivity)
 }
 
 exports.removeCountryFromActivity = async (req, res) => {
