@@ -11,7 +11,8 @@ const {
     getCountries,
     getCountryByName,
     getCountryById,
-    removeActivityFromCountry
+    removeActivityFromCountry,
+    addActivityToCountry
 } = require('../controllers/countries');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -27,8 +28,9 @@ router.get('/countries', (req,res) => {
     }
     return getCountries(req,res)
 })
-router.get('/countries/:id',getCountryById)
-router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
+router.get('/countries/:id', getCountryById)
+router.post('/countries/:c_id/activities/:a_id', addActivityToCountry)
+router.delete('/countries/:c_id/activities/:a_id', removeActivityFromCountry)
 
 router.get('/activities', getActivities)
 router.get('/activities/:id', getActivityById)
