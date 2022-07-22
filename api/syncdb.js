@@ -10,7 +10,7 @@ conn.sync({ force: true }).then( async () => {
         return {
             country_id: c.cca3,
             name: c.name.common,
-            flag_img: c.flags[1], // .png
+            flag_img: c.flags, // .png
             continent: c.continents[0],
             capital: c.capital ? c.capital : ["N/A"], // some are undefined
             subregion: c.subregion, // ? c.subregion : console.log(c.name.common),
