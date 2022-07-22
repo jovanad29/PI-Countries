@@ -48,6 +48,37 @@ exports.postActivity = async (req,res) => {
     return res.status(201).json(activity)
 }
 
+exports.updateActivity = async (req,res) => {
+    const { id, name,  difficulty, duration, season} = req.body
+    if (!name || !difficulty || !duration || !season){
+        return res.status(400).json({
+            error: {
+                message: "name, difficulty, duration and season cannot be empty",
+                values: {...req.body}
+            }
+        })
+    }
+    const activity = await Activity.update({
+            name: name.split(" ").map( str => str[0].toUpperCase() + str.slice(1).toLowerCase()).join(" "),
+            difficulty,
+            duration,
+            season
+        },
+        {
+            where: {
+                activity_id: id
+            }
+        }).catch(e => {
+            return res.status(500).json({
+                error: {
+                    message: "Error while updating resource",
+                    values: {...req.body}
+                }
+            })
+        })
+    return res.status(200).json(activity)
+}
+
 exports.removeCountryFromActivity = async (req, res) => {
     // console.log(await country.removeActivity(await Activity.findOne({where: {name: "actividad uno"}})))
     // console.log(await country.getActivities())
