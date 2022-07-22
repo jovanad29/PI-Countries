@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { routes } = require('../app');
 const {
     postActivity,
     updateActivity,
@@ -30,8 +29,8 @@ router.get('/countries', (req,res) => {
 router.get('/countries/:id',getCountryById)
 router.delete('/countries/:c_id/activities/:a_id',removeActivityFromCountry)
 
-routes.get('/activities', getActivities)
-routes.get('/activities/:id',getActivityById)
+router.get('/activities', getActivities)
+router.get('/activities/:id',getActivityById)
 router.post('/activities', postActivity)
 router.put('/activities/:id', updateActivity)
 router.delete('/activities/:a_id/countries/:a_id',removeCountryFromActivity)
