@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       }
     },
     difficulty: {
-        type: DataTypes.ENUM([1, 2, 3, 4, 5]),
+        type: DataTypes.ENUM(["1", "2", "3", "4", "5"]),
         allowNull: false
     },
     duration: { // en días? en horas?
