@@ -21,10 +21,7 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
-      }
+      allowNull: false
     },
     flag_img: {
       type: DataTypes.ARRAY(DataTypes.STRING),
@@ -39,17 +36,11 @@ module.exports = (sequelize) => {
     },
     capital: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false,
-      // validate: {
-      //   is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
-      // }
+      allowNull: false
     },
     subregion: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
-      }
+      allowNull: true
     },
     area: {
       type: DataTypes.INTEGER,
