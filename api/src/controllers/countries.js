@@ -3,7 +3,11 @@ const { Country, Activity } = require('../db')
 const { Op } = require('sequelize')
 
 exports.getCountries = async (req,res) => {
-    const countries = await Country.findAll({ include: [Activity] })
+    const countries = await Country.findAll({include: {
+        model: Activity,
+        attributes: ['activity_id', "name", "difficulty", "duration", "season"],
+        through: { attributes: [] }
+    }})
     return res.json(countries)
 }
 
@@ -14,7 +18,11 @@ exports.getCountryByName = async (req,res) => {
                 [Op.iLike]: `${req.query.name}%`
             }
         },
-        include: [{model: Activity}] //, attributes: {exclude: ['country_activity'] }}]
+        include: {
+            model: Activity,
+            attributes: ['activity_id', "name", "difficulty", "duration", "season"],
+            through: { attributes: [] }
+        }
     }).catch(e => console.log(e))
     if (!country.length) return res.status(404).json({
         error: {
@@ -27,19 +35,31 @@ exports.getCountryByName = async (req,res) => {
 
 exports.getCountryById = async (req,res) => {
     const { id } = req.params
-    const country = await Country.findByPk(id.toUpperCase(),{include: [Activity]})
-    if (country === null) return res.status(404).json({
-        error: {
-            message: "Country doesn't exist",
-            values: {...req.params}
-        }
-    })
-    return res.json(country)
+    try {
+        const country = await Country.findByPk(id.toUpperCase(),{include: {
+            model: Activity,
+            attributes: ['activity_id', "name", "difficulty", "duration", "season"],
+            through: { attributes: [] }
+        }})
+        if (country === null) return res.status(404).json({
+            error: {
+                message: "Country doesn't exist",
+                values: {...req.params}
+            }
+        })
+        return res.json(country)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 exports.addActivityToCountry = async (req,res) => {
     const { a_id, c_id } = req.params
-    const country = await Country.findByPk(c_id, {include: [Activity]})
+    const country = await Country.findByPk(c_id, {include: {
+        model: Activity,
+        attributes: ['activity_id', "name", "difficulty", "duration", "season"],
+        through: { attributes: [] }
+    }})
     if (country === null) return res.status(404).json({
         error : {
             message: "Country doesn't exist",
@@ -54,7 +74,11 @@ exports.addActivityToCountry = async (req,res) => {
         }
     })
     await country.addActivity(activity)
-    const newData = await Country.findByPk(country.country_id, {include: [Activity]})
+    const newData = await Country.findByPk(country.country_id, {include: {
+        model: Activity,
+        attributes: ['activity_id', "name", "difficulty", "duration", "season"],
+        through: { attributes: [] }
+    }})
     return res.status(201).json(newData)
 }
 
@@ -67,7 +91,11 @@ exports.removeActivityFromCountry = async (req, res) => {
             values: {a_id}
         }
     })
-    const country = await Country.findByPk(c_id, {include: [Activity]})
+    const country = await Country.findByPk(c_id, {include: {
+        model: Activity,
+        attributes: ['activity_id', "name", "difficulty", "duration", "season"],
+        through: { attributes: [] }
+    }})
     if (!country) return res.status(404).json({
         error: {
             message: "Country doesn't exist",
