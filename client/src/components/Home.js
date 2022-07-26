@@ -1,12 +1,12 @@
 
 import React from 'react'
-import CountryDetail from './CountryDetail'
+import CountryCard from './CountryCard'
 
 const Home = () => {
   return (
-    <div className='container'>
+    <div className='cards-container'>
         {[1,2,3,4,5,6,7,8,9].map((c, idx) => {
-            return <CountryDetail key={idx} id={c} />
+            return <CountryCard key={idx} id={c} />
         })}
     </div>
   )
