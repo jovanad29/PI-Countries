@@ -8,14 +8,14 @@ function App() {
   return (
     <div className='App'>
       <Switch>
-        <Route path="/home" component={Home} />
-        <Route path="/home/:id" component={CountryDetail} />
-        <Route path="/activity" component={FormActivity} />
-        <Route path="/">
+        <Route path='/home' component={Home} exact />
+        <Route path='/home/:id' children={(props) => <CountryDetail {...props} />} />
+        <Route path='/activity' component={FormActivity} />
+        <Route path='/' exact>
           <div className='text-container'>
             <h1>Henry Countries</h1>
             <h2>Individual Proyect</h2>
-            <Link to="/home" className='btn btn-enter'>Let's Travel!</Link>
+            <Link to='/home' className='btn btn-enter'>Let's Travel!</Link>
           </div>
         </Route>
       </Switch>
