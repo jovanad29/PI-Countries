@@ -1,12 +1,19 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCountries } from '../actions'
 import CountryCard from './CountryCard'
 
 const Home = () => {
+  const countries = useSelector(state => state.countries)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCountries())
+  },[dispatch])
   return (
     <div className='cards-container'>
-        {[1,2,3,4,5,6,7,8,9].map((c, idx) => {
-            return <CountryCard key={idx} id={c} />
+        {countries?.map((c, idx) => {
+            return <CountryCard key={idx} id={c.country_id} />
         })}
     </div>
   )
