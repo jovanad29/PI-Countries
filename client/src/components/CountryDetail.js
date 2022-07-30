@@ -1,27 +1,31 @@
 
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { getCountryDetail } from '../actions'
+// import { getCountryDetail } from '../actions'
 
 import '../index.css'
 
 const CountryDetail = () => {
   const { id } = useParams()
-  const dispatch = useDispatch()
-  useEffect( () => {
-    console.log(id)
-    dispatch(getCountryDetail(id))
-  },[dispatch, id])
-  const country = useSelector(store => store.country)
+  const [detail, setDetail] = useState({})
+  useEffect(()=>{
+    axios.get("http://localhost:3001/countries/"+id).then(
+      (res) => {
+        const { data } = res
+        setDetail(data)
+      }
+    ).catch(e => console.log(e))
+  },[id])
   return (
     <div style={{border:'1px solid red'}}>
       <h1>CountryDetail</h1>
-      <p>{country.country_id}</p>
-      <p>{country.name}</p>
-      <p>{country.area}km2</p>
-      <p>{country.population}</p>
-      <ul>{country.activities?.map(a => {
+      <p>{detail.country_id}</p>
+      <p>{detail.name}</p>
+      <p>{detail.area}km2</p>
+      <p>{detail.population}</p>
+      <ul>{detail.activities?.map(a => {
         return <li key={a.activity_id}>{a.name}</li>
       })}</ul>
       <Link to='/home' className='btn btn-enter'>Volver a home</Link> {/* goBack? */}
