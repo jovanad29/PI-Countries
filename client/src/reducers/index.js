@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAILS } from "../actions";
+import { GET_ALL_COUNTRIES } from "../actions"; //GET_COUNTRY_DETAILS
 
 const initialState = {
     countries: [],
@@ -13,11 +13,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...JSON.parse(JSON.stringify(state)),
                 countries: payload
             }
-        case GET_COUNTRY_DETAILS:
-        return {
-            ...JSON.parse(JSON.stringify(state)),
-            country: payload
-        }
+        // case GET_COUNTRY_DETAILS:
+        // return {
+        //     ...JSON.parse(JSON.stringify(state)),
+        //     country: payload
+        // }
         // case CREATE_PRODUCT:
         // return {
         //     ...state,
