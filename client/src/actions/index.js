@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
-export const GET_COUNTRY_DETAILS = "GET_COUNTRY_DETAILS"
+// export const GET_COUNTRY_DETAILS = "GET_COUNTRY_DETAILS"
 export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES"
 export const POST_ACTIVITY = "POST_ACTIVITY"
 
