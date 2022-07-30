@@ -18,16 +18,16 @@ export const getCountries = () => {
     }
 }
 
-export const getCountryDetail = (id) => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.get("http://localhost:3001/countries/"+id)
-            return dispatch({ type: GET_COUNTRY_DETAILS, payload: data })            
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
+// export const getCountryDetail = (id) => {
+//     return async (dispatch) => {
+//         try {
+//             const { data } = await axios.get("http://localhost:3001/countries/"+id)
+//             return dispatch({ type: GET_COUNTRY_DETAILS, payload: data })            
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// }
 
 // export function getMoviesFavorite(payload) {
 //     return { type: "ADD_MOVIE_FAVORITE", payload };
