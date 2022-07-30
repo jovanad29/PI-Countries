@@ -9,7 +9,7 @@ function App() {
     <div className='App'>
       <Switch>
         <Route path='/home' component={Home} exact />
-        <Route path='/home/:id' children={(props) => <CountryDetail {...props} />} />
+        <Route path='/country/:id' children={(props) => <CountryDetail {...props} />} />
         <Route path='/activity' component={FormActivity} />
         <Route path='/' exact>
           <div className='text-container'>

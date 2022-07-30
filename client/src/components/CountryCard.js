@@ -8,7 +8,7 @@ const CountryCard = (props) => {
   return (
     <div className='cards'>
       <p>Hola, {props.id}!</p>
-      <Link to={`/home/${props.id}`} className='btn btn-enter'>Ver detalles</Link>
+      <Link to={`/country/${props.id}`} className='btn btn-enter'>Ver detalles</Link>
     </div>
   )
 }
