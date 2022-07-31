@@ -4,7 +4,7 @@ import axios from 'axios'
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
 // export const GET_COUNTRY_DETAILS = "GET_COUNTRY_DETAILS"
 export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES"
-export const POST_ACTIVITY = "POST_ACTIVITY"
+export const CREATE_ACTIVITY = "CREATE_ACTIVITY"
 
 
 export const getCountries = () => {
@@ -28,6 +28,17 @@ export const getCountries = () => {
 //         }
 //     }
 // }
+
+export function createActivity(payload) {
+    return async (dispatch) => {
+        try {
+            var { data } = await axios.post('http://localhost:3001/activities', payload)
+            return dispatch({ type: CREATE_ACTIVITY, payload: data })
+        } catch (error) {
+            console.log(error)
+        };
+    };
+};
 
 // export function getMoviesFavorite(payload) {
 //     return { type: "ADD_MOVIE_FAVORITE", payload };

@@ -1,8 +1,8 @@
-import { GET_ALL_COUNTRIES } from "../actions"; //GET_COUNTRY_DETAILS
+import { GET_ALL_COUNTRIES, CREATE_ACTIVITY } from "../actions"; //GET_COUNTRY_DETAILS
 
 const initialState = {
     countries: [],
-    country: {},
+    activity: {},
     activities: []
   };
 
@@ -18,11 +18,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         //     ...JSON.parse(JSON.stringify(state)),
         //     country: payload
         // }
-        // case CREATE_PRODUCT:
-        // return {
-        //     ...state,
-        //     products: [...state.products, {...action.payload}]
-        // }
+        case CREATE_ACTIVITY:
+            console.log("reducer", payload)
+            return {
+                ...JSON.parse(JSON.stringify(state)),
+                activity:payload
+            }
         // case DELETE_PRODUCT:
         // return {
         //     ...state,
