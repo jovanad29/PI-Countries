@@ -70,6 +70,7 @@ const FormActivity = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(createActivity(activity))
+    alert("The activity has been created successfully")
   }
   const filteredCountries = countries.filter((c) => !activity.countries.includes(c.country_id))
   return (
