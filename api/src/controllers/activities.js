@@ -29,7 +29,6 @@ exports.getActivityById = async (req,res) => {
 exports.postActivity = async (req,res) => {
     const { name,  difficulty, duration, season, countries} = req.body
     if (!name || !difficulty || !duration || !season || !countries.length){
-        console.log("api - postActivity", req.body)
         return res.status(400).json({
             error: {
                 message: "name, difficulty, duration, season and countries cannot be empty",
