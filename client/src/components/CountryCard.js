@@ -1,14 +1,17 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../App.css'
+import '../index.css'
 
 
 const CountryCard = (props) => {
+  const {country_id, name, continent, flag_img} = props
   return (
     <div className='cards'>
-      <p>Hola, {props.id}!</p>
-      <Link to={`/country/${props.id}`} className='btn btn-enter'>Ver detalles</Link>
+      <p>{name}</p>
+      <img src={flag_img[1]} alt='country flag' width='150px' />
+      <p>{continent}</p>
+      <Link to={`/country/${country_id}`} className='btn btn-outline'>More</Link>
     </div>
   )
 }
