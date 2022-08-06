@@ -7,8 +7,7 @@ import CountryCard from './CountryCard'
 import styles from '../assets/css/Home.module.css'
 
 const Home = () => {
-  const { allCountries, countries } = useSelector((state) => ({ 
-    allCountries: state.allCountries,
+  const { countries } = useSelector((state) => ({
     countries: state.countries
   }))
   const dispatch = useDispatch()
@@ -19,11 +18,7 @@ const Home = () => {
     <>
       <NavBar />
       <div className={styles.container}>
-        {countries.length ?
-          countries.map((c) => {
-            return <CountryCard key={c.country_id} {...c} />
-          }) :
-          allCountries.map((c) => {
+        {countries?.map((c) => {
             return <CountryCard key={c.country_id} {...c} />
           })
         }
