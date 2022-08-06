@@ -1,21 +1,23 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getCountriesByName } from '../actions'
+import '../assets/css/SearchBar.module.css'
 
-function SearchBar({ onSearch }) {
-  // console.log(onSearch)
+function SearchBar() {
   const [searched, setSearched] = useState('')
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCountriesByName(searched))
+  }, [dispatch, searched])
   return (
-    <form onSubmit={(e) => {
-        e.preventDefault();
-        onSearch(searched);
-      }}>
-        <input
-            type="text"
-            placeholder="Search..."
-            value={searched}
-            onChange={e => setSearched(e.target.value)}
-        />
-        <input type="submit" value="Search" />
+    <form onSubmit={(e) => e.preventDefault()}>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searched}
+        onChange={(e) => setSearched(e.target.value)}
+      />
     </form>
   )
 }
