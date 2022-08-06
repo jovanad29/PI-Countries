@@ -4,7 +4,6 @@ import {
     CREATE_ACTIVITY } from "../actions"; //GET_COUNTRY_DETAILS
 
 const initialState = {
-    allCountries: [],
     countries: [],
     activity: {},
     activities: []
@@ -15,7 +14,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_ALL_COUNTRIES:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                allCountries: payload
+                countries: payload
             }
         case GET_COUNTRIES_BY_NAME:
             return {
