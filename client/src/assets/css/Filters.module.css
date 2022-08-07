@@ -1,0 +1,22 @@
+
+.container {
+    backdrop-filter: blur(5px);
+}
+
+.container div {
+    display: inline-block;
+    margin: 2.5rem 1rem 0 1rem;
+}
+
+select {
+    border: none;
+    border-radius: 9999px;
+    padding: .5em;
+    margin: .5rem 0 2.5rem 0;
+    font-family: inherit;
+}
+
+select:focus {
+    /* border: none; */
+    outline: none;
+}
