@@ -5,6 +5,7 @@
 }
 html {
   font-size: 62.5%;
+  min-width: 600px;
 }
 body {
   margin: 0;
@@ -36,7 +37,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
-small {
+label, small {
   display: block;
 }
 
@@ -69,4 +70,3 @@ small {
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
-
