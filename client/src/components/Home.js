@@ -21,6 +21,7 @@ const Home = () => {
   const whatCountries = !filtered.length && !Object.keys(error).length ? countries : filtered
   const [nPage, setPage] = useState(1)
   const perPage = nPage === 1 ? 9 : 10
+  const lastPage = whatCountries.length / 10
   let nPages = Math.ceil(whatCountries.length / perPage)
   return (
     <>
@@ -37,7 +38,7 @@ const Home = () => {
           <h3>{error.message}</h3>
         </div>
       </div>
-      <Pagination nPage={nPage} setPage={setPage} nPages={nPages} />
+      <Pagination nPage={nPage} setPage={setPage} nPages={nPages} lPage={lastPage} />
     </>
   )
 }
