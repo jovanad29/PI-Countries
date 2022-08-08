@@ -26,19 +26,20 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <Filters />
-      {/* <Pagination nPage={nPage} setPage={setPage} nPages={nPages} /> */}
-      <div className={styles.container}>
-        {
-          whatCountries.slice(((nPage - 1) * perPage), (((nPage - 1) * perPage) + perPage)).map((c) => {
-            return <CountryCard key={c.country_id} {...c} />
-          })
-        }
-        <div style={{flexDirection:'column'}}>
-          <h3>{error.message}</h3>
+      <main>
+        <Filters />
+        <div className={styles.container}>
+          {
+            whatCountries.slice(((nPage - 1) * perPage), (((nPage - 1) * perPage) + perPage)).map((c) => {
+              return <CountryCard key={c.country_id} {...c} />
+            })
+          }
+          <div style={{flexDirection:'column'}}>
+            <h3>{error.message}</h3>
+          </div>
         </div>
-      </div>
-      <Pagination nPage={nPage} setPage={setPage} nPages={nPages} lPage={lastPage} />
+        <Pagination nPage={nPage} setPage={setPage} nPages={nPages} lPage={lastPage} />
+      </main>
     </>
   )
 }
