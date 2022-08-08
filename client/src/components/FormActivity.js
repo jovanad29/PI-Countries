@@ -145,7 +145,7 @@ const FormActivity = () => {
           <Link to='/home' className='btn btn-secondary'>Back to Home</Link>
           {Object.keys(errors).length || incompleteActivity(activity) ?
             <input type='submit' className='btn btn-primary disabled' disabled/> :
-            <input type='submit' id='submit' className='btn btn-primary' />
+            <input type='submit' className='btn btn-primary' />
           }
         </div>
       </form>
