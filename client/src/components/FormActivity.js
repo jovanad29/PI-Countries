@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getCountries, createActivity } from '../actions'
-import '../index.css'
+import styles from '../assets/css/FormActivity.module.css'
 
 const FormActivity = () => {
   const countries = useSelector(state => state.countries)
@@ -53,17 +53,20 @@ const FormActivity = () => {
     } else if (!/^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g.test(input.name)) {
       errors.name = 'Name is invalid'
     }
-    if(!input.duration){
+    if(!input.duration || input.duration < 1){
       errors.duration = 'Duration is required'
     }
     if (!parseInt(input.difficulty)){
       errors.difficulty = 'Difficulty is required'
     }
-    if (!input.season){
+    if (!parseInt(input.difficulty)){
+      errors.difficulty = 'Difficulty is required'
+    }
+    if (!input.season || input.season === '0'){
       errors.season = 'Season is required'
     }
     if (!input.countries.length){
-      errors.countries = "You must select at least one country"
+      errors.countries = 'You must select at least one country'
     }
     return errors
   }
@@ -74,74 +77,79 @@ const FormActivity = () => {
   }
   const filteredCountries = countries.filter((c) => !activity.countries.includes(c.country_id))
   return (
-    <div>
-      <div>
-        <h2>Países agregados:</h2>
-        {selected.map((c)=>{
-            return (
-              <div key={c.id}>
-                <p>{c.name} <button onClick={() => delCountry(c.id)} className='btn'>&#10005;</button></p>                
-              </div>
-            )
-          })
-        }
-      </div>
-      <Link to='/home' className='btn btn-secondary'>Volver a home</Link> {/* goBack? */}
-      <h1>Create new Activity</h1>
+    <main className={styles.container}>
+      <h1>Add Activity</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input onChange={handleChange} type='text' name='name' value={activity.name} />
-          {errors.name ? <small className='error'>{errors.name}</small> : <small>&nbsp;</small>}
+        <div className={styles.wrapper}>
+          <div className='form'>
+            <div>
+              <label>Name</label>
+              <input onChange={handleChange} type='text' name='name' value={activity.name} />
+              {errors.name ? <small className='error'>{errors.name}</small> : <small>&nbsp;</small>}
+            </div>
+            <div>
+              <label>Duration (in hours)</label>
+              <input onChange={handleChange} type='number' name='duration' min='1' value={activity.duration} />
+              {errors.duration ? <small className='error'>{errors.duration}</small> : <small>&nbsp;</small>}     
+            </div>
+            <div>
+              <label>Difficulty</label>
+              <select onChange={handleChange} name='difficulty'>
+                <option value='0'>-None-</option>
+                <option value='1'>Peaceful</option>
+                <option value='2'>Easy</option>
+                <option value='3'>Normal</option>
+                <option value='4'>Hard</option>
+                <option value='5'>Professional</option>
+              </select>
+              {errors.difficulty ? 
+              <small className='error'>{errors.difficulty}</small> : 
+              <small>&nbsp;</small>}         
+            </div>
+            <div>
+              <label>Season</label>
+              <select onChange={handleChange} name='season'>
+                <option value='0'>-None-</option>
+                <option value='Summer'>Summer</option>
+                <option value='Spring'>Spring</option>
+                <option value='Fall'>Fall</option>
+                <option value='Winter'>Winter</option>
+              </select>
+              {errors.season ? <small className='error'>{errors.season}</small> : <small>&nbsp;</small>}        
+            </div>
+            <div>
+              <label>Countries</label>
+              <select onChange={handleCountries} name='countries'>
+                <option value='0'>-None-</option>
+                {filteredCountries?.map(c => {
+                  return <option value={c.country_id} key={c.country_id}>{c.name}</option>
+                })}
+              </select>
+              {errors.countries ? <small className='error'>{errors.countries}</small> : <small>&nbsp;</small>}  
+            </div>
+          </div>
+          <div>
+            <h2>Countries Selected:</h2>
+            {selected.map((c)=>{
+                return (
+                  <div key={c.id} className={styles.country}>
+                    <p>{c.name}</p>
+                    <button onClick={() => delCountry(c.id)}>&#10005;</button>                
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
-        <div>
-          <label>Duration (in hours)</label>
-          <input onChange={handleChange} type='number' name='duration' min='1' value={activity.duration} />
-          {errors.duration ? <small className='error'>{errors.duration}</small> : <small>&nbsp;</small>}     
-        </div>
-        <div>
-          <label>Difficulty</label>
-          <select onChange={handleChange} name='difficulty'>
-            <option value='0'>-None-</option>
-            <option value='1'>Peaceful</option>
-            <option value='2'>Easy</option>
-            <option value='3'>Normal</option>
-            <option value='4'>Hard</option>
-            <option value='5'>Professional</option>
-          </select>
-          {errors.difficulty ? 
-          <small className='error'>{errors.difficulty}</small> : 
-          <small>&nbsp;</small>}         
-        </div>
-        <div>
-          <label>Season</label>
-          <select onChange={handleChange} name='season'>
-            <option value='0'>-None-</option>
-            <option value='Summer'>Summer</option>
-            <option value='Spring'>Spring</option>
-            <option value='Fall'>Fall</option>
-            <option value='Winter'>Winter</option>
-          </select>
-          {errors.season ? <small className='error'>{errors.season}</small> : <small>&nbsp;</small>}        
-        </div>
-        <div>
-          <label>Countries</label>
-          <select onChange={handleCountries} name='countries'>
-            <option value='0'>-None-</option>
-            {filteredCountries?.map(c => {
-              return <option value={c.country_id} key={c.country_id}>{c.name}</option>
-            })}
-          </select>
-          {errors.countries ? <small className='error'>{errors.countries}</small> : <small>&nbsp;</small>}  
-        </div>
-        <div>
-          {!Object.keys(errors).length || incompleteActivity(activity) ?
-            <input type='submit' className='btn btn-primary' disabled/>: 
-            <input type='submit' className='btn btn-primary' />
-          }        
+        <div className={styles.buttons}>
+          <Link to='/home' className='btn btn-secondary'>Back to Home</Link>
+          {Object.keys(errors).length || incompleteActivity(activity) ?
+            <input type='submit' className='btn btn-primary disabled' disabled/> :
+            <input type='submit' id='submit' className='btn btn-primary' />
+          }
         </div>
       </form>
-    </div>
+    </main>
   )
 }
 
