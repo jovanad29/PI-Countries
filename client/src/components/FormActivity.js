@@ -59,9 +59,6 @@ const FormActivity = () => {
     if (!parseInt(input.difficulty)){
       errors.difficulty = 'Difficulty is required'
     }
-    if (!parseInt(input.difficulty)){
-      errors.difficulty = 'Difficulty is required'
-    }
     if (!input.season || input.season === '0'){
       errors.season = 'Season is required'
     }
