@@ -7,7 +7,7 @@ import styles from '../assets/css/NavBar.module.css'
 function NavBar() {
   return (
     <header>
-      <div id={styles.appTitle}>Countries' App</div>
+      <Link to='/'><div id={styles.appTitle}>Countries' App</div></Link>
       <SearchBar />
       <Link to='/activity/create' className='btn btn-primary'><li>Add Activity</li></Link>
     </header>
