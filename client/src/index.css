@@ -44,9 +44,16 @@ a {
 }
 label, small {
   display: block;
+  margin: .7rem;
 }
 main {
   backdrop-filter: blur(5px);
+  margin-top: 7.5rem;
+}
+select {
+  border: none;
+  border-radius: 9999px;
+  padding: .5em;
 }
 
 .error{
