@@ -1,19 +1,27 @@
 
-.country-container {
-    height: max-content;
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 2.5em 4em;
+    padding-bottom: 1.5em;
+    /* height: 90vh; */
 }
-
+.details-container {
+    padding: 2.5rem 0;
+    width: 100%;
+}
+.details-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.activity {
+    margin-top: 2rem;
+}
 ul li {
     list-style: none;
+    margin: .5rem;
 }
