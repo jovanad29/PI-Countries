@@ -23,7 +23,7 @@ function Filters() {
       <form>
         <div>
           <label htmlFor='continent'>Filter by Continent</label>
-          <select name='continent' id='continent' onChange={handleChange}>
+          <select className={styles.filters} name='continent' id='continent' onChange={handleChange}>
             <option value ='0'>Select an option</option>
               <option value='Africa'>Africa</option>
               <option value='Antarctica'>Antarctica</option>
@@ -36,7 +36,7 @@ function Filters() {
         </div>
         <div>
           <label htmlFor='activity'>Filter by Activity</label>
-          <select name='activity' id='activity' onChange={handleChange}>
+          <select className={styles.filters} name='activity' id='activity' onChange={handleChange}>
             <option value ='0'>Select an option</option>
               {activities?.map(a => {
                 return <option key={a.activity_id} value = {a.activity_id}>{a.name}</option>
