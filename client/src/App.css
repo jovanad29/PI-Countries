@@ -1,11 +1,4 @@
 .App {
   text-align: center;
   color: white;
-  height: 100%;
-  background-image: url('/src/assets/img/mapamundi-dark-bw.webp');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
-  background-attachment: fixed;  
-  min-height: 100vh;
 }
