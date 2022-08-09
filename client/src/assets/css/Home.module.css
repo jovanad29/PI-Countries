@@ -6,4 +6,9 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 2rem 0;
+    width: 100%;
+    min-width: 68rem;
+    max-width: 130rem;
+    margin: 0 auto;
+    /* border: 1px solid red; */
 }
