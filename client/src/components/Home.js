@@ -21,8 +21,11 @@ const Home = () => {
   const whatCountries = !filtered.length && !Object.keys(error).length ? countries : filtered
   const [nPage, setPage] = useState(1)
   const perPage = nPage === 1 ? 9 : 10
-  const lastPage = whatCountries.length / 10
+  const lastPage = Math.ceil(whatCountries.length / 10)
   let nPages = Math.ceil(whatCountries.length / perPage)
+  useEffect(() => {
+    setPage(1)
+  },[whatCountries.length])
   return (
     <>
       <NavBar />
