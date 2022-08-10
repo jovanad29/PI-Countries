@@ -6,8 +6,8 @@ import {
     GET_ALL_ACTIVITIES} from "../actions";
 
 const initialState = {
+    allCountries: [],
     countries: [],
-    filteredCountries: [],
     activities: [],
     activity: {},
     error: {}
@@ -18,8 +18,9 @@ const rootReducer = (state = initialState, action) => {
         case GET_ALL_COUNTRIES:
             return {
                 ...JSON.parse(JSON.stringify(state)),
+                allCountries: action.payload,
                 countries: action.payload,
-                filteredCountries: []
+                // filteredCountries: []
             }
         case GET_COUNTRIES_BY_NAME:
             return {
@@ -29,28 +30,29 @@ const rootReducer = (state = initialState, action) => {
                     status: action.error.response.status,
                     message: action.error.response.data.error.message
                 } : {},
-                filteredCountries: []
+                // filteredCountries: []
             }
         case FILTER_BY_CRITERIA:
             let filtered = []
             let isFiltering = false
             if (action.values.continent && action.values.continent !== '0'){
                 isFiltering = true
-                filtered = filtered.length ? filtered : [...state.countries]
-                filtered = [...state.countries].filter(c => {
+                filtered = filtered.length ? filtered : [...state.allCountries]
+                filtered = [...state.allCountries].filter(c => {
                     return c.continent === action.values.continent
                 })
             }
             if (action.values.activity && action.values.activity !== '0'){
                 isFiltering = true
-                filtered = filtered.length ? filtered : [...state.countries]
+                filtered = filtered.length ? filtered : [...state.allCountries]
                 filtered = filtered.filter(c => {
                     return c.activities.some(a => a.activity_id === action.values.activity)
                 })
             }
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                filteredCountries: filtered,
+                // filteredCountries: filtered,
+                countries: isFiltering ? filtered : state.allCountries,
                 error: isFiltering && !filtered.length ? {
                     message: "No countries found under selected criteria"
                 } : {}
@@ -68,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
                     status: action.error.response.status,
                     message: action.error.response.data.error.message
                 } : {},
-                filteredCountries: []
+                // filteredCountries: []
             }
         default: return state
     }
