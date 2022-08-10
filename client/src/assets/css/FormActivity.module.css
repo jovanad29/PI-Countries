@@ -9,7 +9,7 @@
 .container form {
     width: 100%;
 }
-.container input, select {
+.container input[type='text'],input[type='number'], select {
     width: 25rem;
 }
 .wrapper {
