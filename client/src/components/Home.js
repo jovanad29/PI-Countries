@@ -9,23 +9,21 @@ import Pagination from './Pagination'
 import styles from '../assets/css/Home.module.css'
 
 const Home = () => {
-  const { countries, filtered, error } = useSelector((state) => ({
+  const { countries, error } = useSelector((state) => ({
     countries: state.countries,
-    filtered: state.filteredCountries,
     error: state.error
   }))
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCountries())    
   },[dispatch])
-  const whatCountries = !filtered.length && !Object.keys(error).length ? countries : filtered
   const [nPage, setPage] = useState(1)
   const perPage = nPage === 1 ? 9 : 10
-  const lastPage = Math.ceil(whatCountries.length / 10)
-  let nPages = Math.ceil(whatCountries.length / perPage)
+  const lastPage = Math.ceil(countries.length / 10)
+  let nPages = Math.ceil(countries.length / perPage)
   useEffect(() => {
     setPage(1)
-  },[whatCountries.length])
+  },[countries.length])
   return (
     <>
       <NavBar />
@@ -33,13 +31,15 @@ const Home = () => {
         <Filters />
         <div className={styles.container}>
           {
-            whatCountries.slice(((nPage - 1) * perPage), (((nPage - 1) * perPage) + perPage)).map((c) => {
+            countries.length ?
+              countries.slice(((nPage - 1) * perPage), (((nPage - 1) * perPage) + perPage)).map((c) => {
               return <CountryCard key={c.country_id} {...c} />
-            })
+            }) : Object.keys(error).length ? 
+            <div style={{flexDirection:'column'}}>
+              <h3>{error.message}</h3>
+            </div> :
+            <p>Loading...</p>
           }
-          <div style={{flexDirection:'column'}}>
-            <h3>{error.message}</h3>
-          </div>
         </div>
         <Pagination nPage={nPage} setPage={setPage} nPages={nPages} lPage={lastPage} />
       </main>
