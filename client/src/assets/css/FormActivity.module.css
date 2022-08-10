@@ -9,6 +9,9 @@
 .container form {
     width: 100%;
 }
+.container input, select {
+    width: 25rem;
+}
 .wrapper {
     display: flex;
     flex-direction: row;
