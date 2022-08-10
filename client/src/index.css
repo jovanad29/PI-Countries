@@ -49,7 +49,7 @@ label, small {
 main {
   backdrop-filter: blur(5px);
   margin-top: 7.2rem;
-  max-height: 100vh;
+  min-height: 100vh;
 }
 select {
   border: none;
