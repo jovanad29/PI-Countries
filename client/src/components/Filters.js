@@ -18,7 +18,7 @@ function Filters() {
     dispatch(getActivities())
   }, [dispatch])
   useEffect(() => {
-    document.getElementById("order").value = '0'
+    document.getElementById('order').value = '0'
     dispatch(filterByCriteria(filters))
   },[dispatch, filters])
   
