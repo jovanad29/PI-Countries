@@ -115,8 +115,8 @@ const FormActivity = () => {
               {errors.season ? <small className='error'>{errors.season}</small> : <small>&nbsp;</small>}        
             </div>
             <div>
-              <label>Countries</label>
-              <select onChange={handleCountries} name='countries'>
+              <label htmlFor='country'>Countries</label>
+              <select onChange={handleCountries} name='countries' id='country'>
                 <option value='0'>-None-</option>
                 {filteredCountries?.map(c => {
                   return <option value={c.country_id} key={c.country_id}>{c.name}</option>
@@ -130,7 +130,7 @@ const FormActivity = () => {
             {selected.map((c)=>{
                 return (
                   <div key={c.id} className={styles.country}>
-                    <p>{c.name}</p>
+                    <p>{c.name.length > 30 ? c.name.slice(0,30)+'...' : c.name}</p>
                     <button onClick={() => delCountry(c.id)}>&#10005;</button>                
                   </div>
                 )
