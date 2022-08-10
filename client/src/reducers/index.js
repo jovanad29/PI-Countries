@@ -21,7 +21,6 @@ const rootReducer = (state = initialState, action) => {
                 ...JSON.parse(JSON.stringify(state)),
                 allCountries: action.payload,
                 countries: action.payload,
-                // filteredCountries: []
             }
         case GET_COUNTRIES_BY_NAME:
             return {
@@ -31,7 +30,6 @@ const rootReducer = (state = initialState, action) => {
                     status: action.error.response.status,
                     message: action.error.response.data.error.message
                 } : {},
-                // filteredCountries: []
             }
         case FILTER_BY_CRITERIA:
             let filtered = []
@@ -96,7 +94,6 @@ const rootReducer = (state = initialState, action) => {
                     status: action.error.response.status,
                     message: action.error.response.data.error.message
                 } : {},
-                // filteredCountries: []
             }
         default: return state
     }
