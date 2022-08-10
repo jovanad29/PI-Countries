@@ -2,28 +2,35 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from '../assets/css/Filters.module.css'
-import { filterByCriteria, getActivities } from '../actions/index'
+import { filterByCriteria, orderByCriteria, getActivities } from '../actions/index'
 
 function Filters() {
-  const [selects, setSelects] = useState({})
+  const [filters, setFilters] = useState({})
+  const [order, setOrder] = useState({})
   const activities = useSelector(state => state.activities)
   const dispatch = useDispatch()
-  const handleChange = (e) => {
-    setSelects({...selects, [e.target.name]: e.target.value})
+  const handleFilter = (e) => {
+    setFilters({...filters, [e.target.name]: e.target.value})
+  }
+  const handleOrder = (e) => {
+    setOrder({[e.target.name]:e.target.value})
   }
   useEffect(() => {
     dispatch(getActivities())
   }, [dispatch])
   useEffect(() => {
-    dispatch(filterByCriteria(selects))
-  },[dispatch, selects])
+    dispatch(filterByCriteria(filters))
+  },[dispatch, filters])
+  useEffect(() => {
+    dispatch(orderByCriteria(order))
+  }, [dispatch, order])
   
   return (
     <div className={styles.container}>
       <form>
         <div>
           <label htmlFor='continent'>Filter by Continent</label>
-          <select className={styles.filters} name='continent' id='continent' onChange={handleChange}>
+          <select className={styles.select} name='continent' id='continent' onChange={handleFilter}>
             <option value ='0'>Select an option</option>
               <option value='Africa'>Africa</option>
               <option value='Antarctica'>Antarctica</option>
@@ -36,11 +43,21 @@ function Filters() {
         </div>
         <div>
           <label htmlFor='activity'>Filter by Activity</label>
-          <select className={styles.filters} name='activity' id='activity' onChange={handleChange}>
+          <select className={styles.select} name='activity' id='activity' onChange={handleFilter}>
             <option value ='0'>Select an option</option>
               {activities?.map(a => {
                 return <option key={a.activity_id} value = {a.activity_id}>{a.name}</option>
               })}
+          </select>
+        </div>
+        <div>
+          <label htmlFor='order'>Order By</label>
+          <select className={styles.select} name='order' id='order' onChange={handleOrder}>
+            <option value='0'>Select an option</option>
+            <option value='a-z'>A to Z</option>
+            <option value='z-a'>Z to A </option>
+            <option value='min-max'>Min Population to Max Population</option>
+            <option value='max-min'>Max Population to Min Population</option>
           </select>
         </div>
       </form>
