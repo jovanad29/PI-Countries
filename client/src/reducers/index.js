@@ -58,11 +58,6 @@ const rootReducer = (state = initialState, action) => {
                 } : {}
             }
         case ORDER_BY_CRITERIA:
-            // const comparator = (a, b) => {
-            //     if (a < b) return -1 // shift to the left
-            //     if (a > b) return 1 // shift to the right
-            //     return 0 // stay where you are
-            //   }
             if (action.value.order === 'a-z'){
                 return {
                     ...state,
