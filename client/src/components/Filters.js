@@ -6,24 +6,21 @@ import { filterByCriteria, orderByCriteria, getActivities } from '../actions/ind
 
 function Filters() {
   const [filters, setFilters] = useState({})
-  const [order, setOrder] = useState({})
   const activities = useSelector(state => state.activities)
   const dispatch = useDispatch()
   const handleFilter = (e) => {
     setFilters({...filters, [e.target.name]: e.target.value})
   }
   const handleOrder = (e) => {
-    setOrder({[e.target.name]:e.target.value})
+    dispatch(orderByCriteria({[e.target.name]:e.target.value}))
   }
   useEffect(() => {
     dispatch(getActivities())
   }, [dispatch])
   useEffect(() => {
+    document.getElementById("order").value = '0'
     dispatch(filterByCriteria(filters))
   },[dispatch, filters])
-  useEffect(() => {
-    dispatch(orderByCriteria(order))
-  }, [dispatch, order])
   
   return (
     <div className={styles.container}>
