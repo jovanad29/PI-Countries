@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getCountries, createActivity } from '../actions'
+import { getCountries } from '../actions'
 import styles from '../assets/css/FormActivity.module.css'
+import axios from 'axios'
 
 const FormActivity = () => {
   const countries = useSelector(state => state.countries)
@@ -67,10 +68,15 @@ const FormActivity = () => {
     }
     return errors
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    dispatch(createActivity(activity))
-    alert("The activity has been created successfully")
+    try {
+      const { data } = await axios.post('http://localhost:3001/activities',activity)
+      alert(`Activity ${data.name} added successfully!`);
+      window.location.reload()
+    } catch (error) {
+      alert(error.response.data.error.message)
+    }
   }
   const filteredCountries = countries.filter((c) => !activity.countries.includes(c.country_id))
   return (
