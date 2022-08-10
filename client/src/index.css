@@ -51,10 +51,18 @@ main {
   margin-top: 7.2rem;
   min-height: 100vh;
 }
+input {
+  border: none;
+  border-radius: 9999px;
+  padding: .5em 1em;
+}
 select {
   border: none;
   border-radius: 9999px;
   padding: .5em;
+}
+input, select {
+  font-family: inherit;
 }
 
 .error{
