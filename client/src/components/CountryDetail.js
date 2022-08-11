@@ -31,8 +31,8 @@ const CountryDetail = () => {
               <p>CAPITAL: {detail.capital.join(', ')}</p>
               <p>CONTINENT: {detail.continent}</p>
               <p>SUBREGION: {detail.subregion ? detail.subregion : 'N/A'}</p>
-              <p>AREA: {detail.area} km<sup>2</sup></p>
-              <p>POPULATION: {detail.population}</p>
+              <p>AREA: {new Intl.NumberFormat().format(detail.area)} km<sup>2</sup></p>
+              <p>POPULATION: {new Intl.NumberFormat().format(detail.population)}</p>
             </div>
             <div className='box'>
               <h2>ACTIVITIES</h2>
