@@ -8,7 +8,7 @@ exports.getCountries = async (req,res) => {
         attributes: ['activity_id', "name", "difficulty", "duration", "season"],
         through: { attributes: [] }
     }})
-    return res.json(countries)
+    return res.status(200).json(countries)
 }
 
 exports.getCountryByName = async (req,res) => {
