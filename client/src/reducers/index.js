@@ -36,14 +36,14 @@ const rootReducer = (state = initialState, action) => {
             let isFiltering = false
             if (action.values.continent && action.values.continent !== '0'){
                 isFiltering = true
-                filtered = filtered.length ? filtered : [...state.allCountries]
-                filtered = [...state.allCountries].filter(c => {
+                filtered = filtered.length ? filtered : [...state.countries]
+                filtered = filtered.filter(c => {
                     return c.continent === action.values.continent
                 })
             }
             if (action.values.activity && action.values.activity !== '0'){
                 isFiltering = true
-                filtered = filtered.length ? filtered : [...state.allCountries]
+                filtered = filtered.length ? filtered : [...state.countries]
                 filtered = filtered.filter(c => {
                     return c.activities.some(a => a.activity_id === action.values.activity)
                 })
