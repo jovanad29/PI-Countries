@@ -2,8 +2,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import '../assets/css/CountryDetail.css'
-import NavBar from './NavBar'
+import './CountryDetail.css'
+import NavBar from '../NavBar/NavBar'
 
 const CountryDetail = () => {
   const { id } = useParams()

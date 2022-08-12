@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries } from '../actions'
-import NavBar from './NavBar'
-import Filters from './Filters'
-import CountryCard from './CountryCard'
-import Pagination from './Pagination'
-import styles from '../assets/css/Home.module.css'
+import { getCountries } from '../../actions'
+import NavBar from '../NavBar/NavBar'
+import Filters from '../Filters/Filters'
+import CountryCard from '../CountryCard/CountryCard'
+import Pagination from '../Pagination/Pagination'
+import styles from './Home.module.css'
 
 const Home = () => {
   const { countries, error } = useSelector((state) => ({

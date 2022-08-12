@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styles from '../assets/css/Filters.module.css'
-import { filterByCriteria, orderByCriteria, getActivities } from '../actions/index'
+import styles from './Filters.module.css'
+import { filterByCriteria, orderByCriteria, getActivities } from '../../actions'
 
 function Filters() {
   const { allCountries, activities } = useSelector(state => ({

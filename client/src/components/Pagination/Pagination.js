@@ -1,6 +1,6 @@
 
 import React from 'react'
-import styles from '../assets/css/Pagination.module.css'
+import styles from './Pagination.module.css'
 
 function Pagination({nPage, setPage, nPages, lPage}) {
     const nextPage = () => {

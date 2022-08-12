@@ -1,8 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../index.css'
-import styles from '../assets/css/CountryCard.module.css'
+import styles from './CountryCard.module.css'
 
 
 const CountryCard = (props) => {
