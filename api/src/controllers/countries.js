@@ -12,10 +12,12 @@ exports.getCountries = async (req,res) => {
 }
 
 exports.getCountryByName = async (req,res) => {
+    let { name } =  req.query
+    name = name.trim()
     const country = await Country.findAll({
         where: {
             name: {
-                [Op.iLike]: `${req.query.name}%`
+                [Op.iLike]: `${name}%`
             }
         },
         include: {
