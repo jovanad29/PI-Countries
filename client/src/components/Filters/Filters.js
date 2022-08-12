@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './Filters.module.css'
-import { filterByCriteria, orderByCriteria, getActivities } from '../../actions'
+import { filterByCriteria, orderByCriteria, getActivities } from '../../redux/actions'
 
 function Filters() {
   const { allCountries, activities } = useSelector(state => ({

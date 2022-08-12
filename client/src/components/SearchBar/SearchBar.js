@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getCountriesByName } from '../../actions/index'
+import { getCountriesByName } from '../../redux/actions'
 
 function SearchBar() {
   const [searched, setSearched] = useState('')

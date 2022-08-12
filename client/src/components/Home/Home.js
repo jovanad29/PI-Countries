@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries } from '../../actions'
+import { getCountries } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import Filters from '../Filters/Filters'
 import CountryCard from '../CountryCard/CountryCard'

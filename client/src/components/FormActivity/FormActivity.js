@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getCountries } from '../../actions'
+import { getCountries } from '../../redux/actions'
 import styles from './FormActivity.module.css'
 import axios from 'axios'
 
