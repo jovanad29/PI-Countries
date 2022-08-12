@@ -7,7 +7,11 @@ exports.getCountries = async (req,res) => {
         model: Activity,
         attributes: ['activity_id', "name", "difficulty", "duration", "season"],
         through: { attributes: [] }
-    }})
+        },
+        order: [
+            ['name','ASC']
+        ]
+    })
     return res.status(200).json(countries)
 }
 
