@@ -3,12 +3,20 @@ const { Country, Activity } = require('../db')
 const { Op } = require('sequelize')
 
 exports.getActivities = async (req,res) => {
-    return res.json(await Activity.findAll({ include: [Country] }))
+    return res.json(await Activity.findAll({include: {
+        model: Country,
+        attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
+        through: { attributes: [] }
+    }}))
 }
 
 exports.getActivityById = async (req,res) => {
     const { id } = req.params
-    const activity = await Activity.findByPk(id,{include: [Country]})
+    const activity = await Activity.findByPk(id,{include: {
+        model: Country,
+        attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
+        through: { attributes: [] }
+    }})
     if (activity === null) return res.status(404).json({
         error: {
             message: "Activity doesn't exist",
@@ -98,7 +106,11 @@ exports.updateActivity = async (req,res) => {
 
 exports.addCountryToActivity = async (req,res) => {
     const { a_id, c_id } = req.params
-    const activity = await Activity.findByPk(a_id, {include: [Country]})
+    const activity = await Activity.findByPk(a_id, {include: {
+        model: Country,
+        attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
+        through: { attributes: [] }
+    }})
     if (activity === null) return res.status(404).json({
         error : {
             message: "Activity doesn't exist",
@@ -113,7 +125,11 @@ exports.addCountryToActivity = async (req,res) => {
         }
     })
     await activity.addCountry(country)
-    const newActivity = await Activity.findByPk(activity.activity_id, {include: [Country]})
+    const newActivity = await Activity.findByPk(activity.activity_id, {include: {
+        model: Country,
+        attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
+        through: { attributes: [] }
+    }})
     return res.status(201).json(newActivity)
 }
 
@@ -126,7 +142,11 @@ exports.removeCountryFromActivity = async (req, res) => {
             values: {c_id}
         }
     })
-    const activity = await Activity.findByPk(a_id, {include: [Country]})
+    const activity = await Activity.findByPk(a_id, {include: {
+        model: Country,
+        attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
+        through: { attributes: [] }
+    }})
     if (!activity) return res.status(404).json({
         error: {
             message: "Activity doesn't exist",

@@ -1,0 +1,33 @@
+
+.container {
+    /* width: 2.5rem; */
+    padding-bottom: 2rem;
+    /* margin: 1rem auto; */
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container > * {
+    margin: 0 1rem;
+}
+.doubleArrow {
+    padding: .4em;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+button {
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+    padding: .2em;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.container span {
+    display: block;
+    width: 6.5rem;
+}

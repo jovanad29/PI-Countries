@@ -15,7 +15,13 @@ describe('Country model', () => {
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Country.create({ name: 'Argentina' });
+        Country.create({ 
+          country_id: 'ARG',
+          name: 'Argentina',
+          flag_img: ['img1', 'img2'],
+          continent: 'South America',
+          capital: 'Buenos Aires'
+        });
       });
     });
   });

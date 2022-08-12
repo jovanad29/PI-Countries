@@ -5,8 +5,12 @@ const app = require('../../src/app.js');
 const { Country, conn } = require('../../src/db.js');
 
 const agent = session(app);
-const country = {
+const country = { 
+  country_id: 'ARG',
   name: 'Argentina',
+  flag_img: ['www.img1.com', 'www.img2.com'],
+  continent: 'South America',
+  capital: 'Buenos Aires'
 };
 
 describe('Country routes', () => {
