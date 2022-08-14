@@ -1,12 +1,15 @@
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styles from '../assets/css/Filters.module.css'
-import { filterByCriteria, orderByCriteria, getActivities } from '../actions/index'
+import styles from './Filters.module.css'
+import { filterByCriteria, orderByCriteria, getActivities } from '../../redux/actions'
 
 function Filters() {
+  const { allCountries, activities } = useSelector(state => ({
+    allCountries: state.allCountries,
+    activities: state.activities
+  }))
   const [filters, setFilters] = useState({})
-  const activities = useSelector(state => state.activities)
   const dispatch = useDispatch()
   const handleFilter = (e) => {
     setFilters({...filters, [e.target.name]: e.target.value})
@@ -15,12 +18,16 @@ function Filters() {
     dispatch(orderByCriteria({[e.target.name]:e.target.value}))
   }
   useEffect(() => {
+    document.getElementById('continent').value = '0'
+    document.getElementById('activity').value = '0'
+  }, [allCountries.length])
+  useEffect(() => {
     dispatch(getActivities())
   }, [dispatch])
   useEffect(() => {
     document.getElementById('order').value = '0'
     dispatch(filterByCriteria(filters))
-  },[dispatch, filters])
+  }, [dispatch, filters])
   
   return (
     <div className={styles.container}>

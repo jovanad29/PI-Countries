@@ -7,7 +7,11 @@ exports.getActivities = async (req,res) => {
         model: Country,
         attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
         through: { attributes: [] }
-    }}))
+        },
+        order: [
+            ['name','ASC']
+        ]
+    }))
 }
 
 exports.getActivityById = async (req,res) => {

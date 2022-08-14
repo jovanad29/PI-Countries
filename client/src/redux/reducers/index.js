@@ -12,19 +12,20 @@ const initialState = {
     activities: [],
     activity: {},
     error: {}
-  };
+};
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_COUNTRIES:
             return {
-                ...JSON.parse(JSON.stringify(state)),
+                ...state,
                 allCountries: action.payload,
                 countries: action.payload,
             }
         case GET_COUNTRIES_BY_NAME:
             return {
-                ...JSON.parse(JSON.stringify(state)),
+                ...state,
+                allCountries: action.payload,
                 countries: action.payload,
                 error: action.error ? {
                     status: action.error.response.status,
@@ -36,14 +37,14 @@ const rootReducer = (state = initialState, action) => {
             let isFiltering = false
             if (action.values.continent && action.values.continent !== '0'){
                 isFiltering = true
-                filtered = filtered.length ? filtered : [...state.countries]
+                filtered = filtered.length ? filtered : [...state.allCountries]
                 filtered = filtered.filter(c => {
                     return c.continent === action.values.continent
                 })
             }
             if (action.values.activity && action.values.activity !== '0'){
                 isFiltering = true
-                filtered = filtered.length ? filtered : [...state.countries]
+                filtered = filtered.length ? filtered : [...state.allCountries]
                 filtered = filtered.filter(c => {
                     return c.activities.some(a => a.activity_id === action.values.activity)
                 })

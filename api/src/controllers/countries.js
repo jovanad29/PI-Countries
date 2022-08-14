@@ -7,15 +7,21 @@ exports.getCountries = async (req,res) => {
         model: Activity,
         attributes: ['activity_id', "name", "difficulty", "duration", "season"],
         through: { attributes: [] }
-    }})
+        },
+        order: [
+            ['name','ASC']
+        ]
+    })
     return res.status(200).json(countries)
 }
 
 exports.getCountryByName = async (req,res) => {
+    let { name } =  req.query
+    name = name.trim()
     const country = await Country.findAll({
         where: {
             name: {
-                [Op.iLike]: `${req.query.name}%`
+                [Op.iLike]: `${name}%`
             }
         },
         include: {
