@@ -1,10 +1,11 @@
 import './index.css';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import Home from './components/Home';
-import CountryDetail from './components/CountryDetail';
-import FormActivity from './components/FormActivity';
+import LandingPage from './components/LandingPage/LandingPage';
+import Home from './components/Home/Home';
+import CountryDetail from './components/CountryDetail/CountryDetail';
+import FormActivity from './components/FormActivity/FormActivity';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/country/:id' render={(props) => <CountryDetail {...props} />} />
         <Route path='/activity/create' component={FormActivity} />
         <Route path='/' component={LandingPage} exact />
+        <Route path='*' component={NotFound} />
       </Switch>
     </div>
   )

@@ -1,8 +1,8 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SearchBar from './SearchBar'
-import styles from '../assets/css/NavBar.module.css'
+import SearchBar from '../SearchBar/SearchBar'
+import styles from './NavBar.module.css'
 
 function NavBar() {
   return (

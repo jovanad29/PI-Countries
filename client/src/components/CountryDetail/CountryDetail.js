@@ -2,10 +2,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import '../assets/css/CountryDetail.css'
-import NavBar from './NavBar'
+import './CountryDetail.css'
+import NavBar from '../NavBar/NavBar'
+import { useDispatch } from 'react-redux'
+import { deleteActivityFromCountry } from '../../redux/actions'
 
 const CountryDetail = () => {
+  const dispatch = useDispatch()
   const { id } = useParams()
   const [detail, setDetail] = useState({})
   const difficulties = {1:'Peaceful', 2:'Easy', 3:'Normal', 4:'Hard', 5:'Professional'}
@@ -17,6 +20,13 @@ const CountryDetail = () => {
       }
     ).catch(e => console.log(e))
   },[id])
+  const handleDelete = (a_id,c_id) => {
+    const answer = window.confirm("Do you really want to delete this activity?");
+    if (answer) {
+      dispatch(deleteActivityFromCountry(a_id,c_id));
+      window.location.reload()
+    }
+  }
   return (
     <>
       <NavBar />
@@ -43,9 +53,10 @@ const CountryDetail = () => {
                     <div className='activity'  key={Math.random()}>
                       <h3 key={a.activity_id}>{a.name}</h3>
                       <ul key={Math.random()}>
-                        <li key={Math.random()}>Difficulty: {difficulties[a.difficulty]}</li>
-                        <li key={Math.random()}>Duration: {a.duration} hours</li>
-                        <li key={Math.random()}>Season: {a.season}</li>
+                        <li>Difficulty: {difficulties[a.difficulty]}</li>
+                        <li>Duration: {a.duration} hours</li>
+                        <li>Season: {a.season}</li>
+                        <li><button className='delete' onClick={(e) => handleDelete(a.activity_id,id)}>Delete</button></li>
                       </ul>
                     </div>
                     )

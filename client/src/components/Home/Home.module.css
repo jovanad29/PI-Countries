@@ -12,3 +12,12 @@
     margin: 0 auto;
     /* border: 1px solid red; */
 }
+
+.errorMsg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fa2e2e;
+    min-height: 50vh;
+}
