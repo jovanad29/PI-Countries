@@ -7,6 +7,7 @@ import Filters from '../Filters/Filters'
 import CountryCard from '../CountryCard/CountryCard'
 import Pagination from '../Pagination/Pagination'
 import styles from './Home.module.css'
+import Loader from '../Loader/Loader'
 
 const Home = () => {
   const { countries, error } = useSelector((state) => ({
@@ -35,10 +36,10 @@ const Home = () => {
               countries.slice(((nPage - 1) * perPage), (((nPage - 1) * perPage) + perPage)).map((c) => {
               return <CountryCard key={c.country_id} {...c} />
             }) : Object.keys(error).length ? 
-            <div style={{flexDirection:'column'}}>
+            <div className={styles.errorMsg}>
               <h3>{error.message}</h3>
             </div> :
-            <p>Loading...</p>
+            <Loader />
           }
         </div>
         <Pagination nPage={nPage} setPage={setPage} nPages={nPages} lPage={lastPage} />
