@@ -22,10 +22,10 @@ const CountryDetail = () => {
   },[id])
   const handleDelete = (a_id,c_id) => {
     const answer = window.confirm("Do you really want to delete this activity?");
-      if (answer) {
-        dispatch(deleteActivityFromCountry(a_id,c_id));
-        window.location.reload()
-      }
+    if (answer) {
+      dispatch(deleteActivityFromCountry(a_id,c_id));
+      window.location.reload()
+    }
   }
   return (
     <>
@@ -56,7 +56,7 @@ const CountryDetail = () => {
                         <li>Difficulty: {difficulties[a.difficulty]}</li>
                         <li>Duration: {a.duration} hours</li>
                         <li>Season: {a.season}</li>
-                        <li><button onClick={(e) => handleDelete(a.activity_id,id)}>X</button></li>
+                        <li><button className='delete' onClick={(e) => handleDelete(a.activity_id,id)}>Delete</button></li>
                       </ul>
                     </div>
                     )
