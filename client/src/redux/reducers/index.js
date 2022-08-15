@@ -4,7 +4,8 @@ import {
     CREATE_ACTIVITY, 
     FILTER_BY_CRITERIA,
     GET_ALL_ACTIVITIES,
-    ORDER_BY_CRITERIA} from "../actions";
+    ORDER_BY_CRITERIA,
+    DELETE_ACTIVITY_FROM_COUNTRY} from "../actions";
 
 const initialState = {
     allCountries: [],
@@ -21,6 +22,9 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 allCountries: action.payload,
                 countries: action.payload,
+                error: action.error ? {
+                    message: action.error.message
+                } : {}
             }
         case GET_COUNTRIES_BY_NAME:
             return {
@@ -80,7 +84,7 @@ const rootReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                countries: [...state.allCountries]
+                countries: [...state.countries]
             }
         case CREATE_ACTIVITY:
             return {
@@ -96,6 +100,8 @@ const rootReducer = (state = initialState, action) => {
                     message: action.error.response.data.error.message
                 } : {},
             }
+        case DELETE_ACTIVITY_FROM_COUNTRY:
+            return {...JSON.parse(JSON.stringify(state))}
         default: return state
     }
 };

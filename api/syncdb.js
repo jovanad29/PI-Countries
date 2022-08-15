@@ -13,7 +13,7 @@ conn.sync({ force: true }).then( async () => {
                 flag_img: c.flags,
                 continent: c.continents[0],
                 capital: c.capital ? c.capital : ["N/A"], // some are undefined
-                subregion: c.subregion, // ? c.subregion : console.log(c.name.common),
+                subregion: c.subregion, // some are undefined
                 area: c.area,
                 population: c.population
             }
