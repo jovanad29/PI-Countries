@@ -3,10 +3,12 @@ const { Country, Activity } = require('../db')
 const { Op } = require('sequelize')
 
 exports.getActivities = async (req,res) => {
-    return res.json(await Activity.findAll({include: {
-        model: Country,
-        attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
-        through: { attributes: [] }
+    return res.json(await Activity.findAll(
+        {
+        include: {
+            model: Country,
+            attributes: ['country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population'],
+            through: { attributes: [] }
         },
         order: [
             ['name','ASC']
