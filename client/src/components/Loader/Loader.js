@@ -7,7 +7,7 @@ function Loader() {
     // <div className={styles.ldsCircle}><div></div></div>
     <div className={styles.container}>
     <p>Loading</p>
-    <div class={styles.loader}></div>
+    <div className={styles.loader}></div>
     </div>
   )
 }
