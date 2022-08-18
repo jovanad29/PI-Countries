@@ -75,7 +75,7 @@ exports.postActivity = async (req,res) => {
         if (country !== null) await country.addActivity(activity)
     });
     const newActivity = await Activity.findByPk(activity.activity_id, {include: [Country]})
-    return res.status(201).json(newActivity) // no muestra las relaciones actualizadas
+    return res.status(201).json(newActivity)
 }
 
 exports.updateActivity = async (req,res) => {
