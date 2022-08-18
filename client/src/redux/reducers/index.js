@@ -1,7 +1,7 @@
 import {
     GET_ALL_COUNTRIES,
     GET_COUNTRIES_BY_NAME,
-    CREATE_ACTIVITY, 
+    // CREATE_ACTIVITY,
     FILTER_BY_CRITERIA,
     GET_ALL_ACTIVITIES,
     ORDER_BY_CRITERIA,
@@ -11,7 +11,7 @@ const initialState = {
     allCountries: [],
     countries: [],
     activities: [],
-    activity: {},
+    // activity: {},
     error: {}
 };
 
@@ -39,14 +39,14 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_BY_CRITERIA:
             let filtered = []
             let isFiltering = false
-            if (action.values.continent && action.values.continent !== '0'){
+            if (action.values.continent && action.values.continent !== '0'){ // si es diferente a activity
                 isFiltering = true
                 filtered = filtered.length ? filtered : [...state.allCountries]
                 filtered = filtered.filter(c => {
                     return c.continent === action.values.continent
                 })
             }
-            if (action.values.activity && action.values.activity !== '0'){
+            if (action.values.activity && action.values.activity !== '0'){ // else
                 isFiltering = true
                 filtered = filtered.length ? filtered : [...state.allCountries]
                 filtered = filtered.filter(c => {
@@ -86,11 +86,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: [...state.countries]
             }
-        case CREATE_ACTIVITY:
-            return {
-                ...JSON.parse(JSON.stringify(state)),
-                activity: action.payload
-            }
+        // case CREATE_ACTIVITY:
+        //     return {
+        //         ...JSON.parse(JSON.stringify(state)),
+        //         activity: action.payload
+        //     }
         case GET_ALL_ACTIVITIES:
             return {
                 ...JSON.parse(JSON.stringify(state)),
