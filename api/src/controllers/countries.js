@@ -28,8 +28,11 @@ exports.getCountryByName = async (req,res) => {
             model: Activity,
             attributes: ['activity_id', "name", "difficulty", "duration", "season"],
             through: { attributes: [] }
-        }
-    }).catch(e => console.log(e))
+        },
+        order: [
+            ['name','ASC']
+        ]
+    })
     if (!country.length) return res.status(404).json({
         error: {
             message: "Country doesn't exist",

@@ -40,16 +40,16 @@ export const orderByCriteria = (value) => {
     return {type: ORDER_BY_CRITERIA, value}
 }
 
-export function createActivity(payload) {
-    return async (dispatch) => {
-        try {
-            var { data } = await axios.post('http://localhost:3001/activities', payload)
-            return dispatch({ type: CREATE_ACTIVITY, payload: data })
-        } catch (error) {
-            return dispatch({ type: GET_COUNTRIES_BY_NAME, payload: error.data.values, error })
-        };
-    };
-};
+// export function createActivity(payload) {
+//     return async (dispatch) => {
+//         try {
+//             var { data } = await axios.post('http://localhost:3001/activities', payload)
+//             return dispatch({ type: CREATE_ACTIVITY, payload: data })
+//         } catch (error) {
+//             return dispatch({ type: CREATE_ACTIVITY, payload: error.data.values, error })
+//         };
+//     };
+// };
 
 export const getActivities = () => {
     return async (dispatch) => {

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './CountryDetail.css'
 import NavBar from '../NavBar/NavBar'
+import Loader from '../Loader/Loader'
 import { useDispatch } from 'react-redux'
 import { deleteActivityFromCountry } from '../../redux/actions'
 
@@ -66,7 +67,7 @@ const CountryDetail = () => {
             </div>
           </div>     
         </div>
-        : ''
+        : <Loader />
         }
         <Link to='/home' className='btn btn-secondary'>Back to Home</Link>
       </main>
