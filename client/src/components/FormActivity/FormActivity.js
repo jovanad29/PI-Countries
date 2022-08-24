@@ -57,6 +57,9 @@ const FormActivity = () => {
     if(!input.duration || input.duration < 1){
       errors.duration = 'Duration is required'
     }
+    if(input.duration < 1 || input.duration > 5){
+      errors.duration = 'Duration is must be a number between 1 and 5'
+    }
     if (!parseInt(input.difficulty)){
       errors.difficulty = 'Difficulty is required'
     }

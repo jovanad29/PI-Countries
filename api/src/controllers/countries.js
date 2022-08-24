@@ -114,3 +114,16 @@ exports.removeActivityFromCountry = async (req, res) => {
     await country.removeActivity(activity)
     return res.status(204).json({})
 }
+
+exports.getHenry = async (req,res) => {
+    try {
+        const henryCountries = await Country.findAll({
+            where: {
+                [Op.iLike]: "%henry%"
+            }
+        })        
+    } catch (error) {
+        console.log(error)
+    }
+    return res.json(henryCountries)
+}
