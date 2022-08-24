@@ -28,8 +28,11 @@ exports.getCountryByName = async (req,res) => {
             model: Activity,
             attributes: ['activity_id', "name", "difficulty", "duration", "season"],
             through: { attributes: [] }
-        }
-    }).catch(e => console.log(e))
+        },
+        order: [
+            ['name','ASC']
+        ]
+    })
     if (!country.length) return res.status(404).json({
         error: {
             message: "Country doesn't exist",
@@ -110,4 +113,17 @@ exports.removeActivityFromCountry = async (req, res) => {
     })
     await country.removeActivity(activity)
     return res.status(204).json({})
+}
+
+exports.getHenry = async (req,res) => {
+    try {
+        const henryCountries = await Country.findAll({
+            where: {
+                [Op.iLike]: "%henry%"
+            }
+        })        
+    } catch (error) {
+        console.log(error)
+    }
+    return res.json(henryCountries)
 }
