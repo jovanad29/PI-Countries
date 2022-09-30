@@ -7,9 +7,7 @@ exports.getCountries = async (req, res) => {
     try {
         const countries = await Country.findAll({
             include: {
-                model: Activity,
-                // attributes: [ 'activity_id', 'name', 'difficulty', 'duration', 'season' ],
-                through: { attributes: [] },
+                model: Activity, through: { attributes: [] },
                 include: { model: Season, through: { attributes: [] } }
             },
             order: [
@@ -38,9 +36,7 @@ exports.getCountryByName = async (req, res) => {
                 }
             },
             include: {
-                model: Activity,
-                // attributes: [ 'activity_id', 'name', 'difficulty', 'duration', 'season' ],
-                through: { attributes: [] },
+                model: Activity, through: { attributes: [] },
                 include: { model: Season, through: { attributes: [] } }
             },
             order: [
@@ -69,9 +65,7 @@ exports.getCountryById = async (req, res) => {
     try {
         const country = await Country.findByPk(id.toUpperCase(), {
             include: {
-                model: Activity,
-                // attributes: [ 'activity_id', 'name', 'difficulty', 'duration', 'season' ],
-                through: { attributes: [] },
+                model: Activity, through: { attributes: [] },
                 include: { model: Season, through: { attributes: [] } }
             }
         })
@@ -97,9 +91,7 @@ exports.addActivityToCountry = async (req, res) => {
     try {
         const country = await Country.findByPk(c_id, {
             include: {
-                model: Activity,
-                // attributes: [ 'activity_id', 'name', 'difficulty', 'duration', 'season' ],
-                through: { attributes: [] },
+                model: Activity, through: { attributes: [] },
                 include: { model: Season, through: { attributes: [] } }
             }
         })
@@ -117,6 +109,7 @@ exports.addActivityToCountry = async (req, res) => {
             }
         })
         await country.addActivity(activity)
+        return res.status(204).json({})
     } catch (error) {
         console.log(error)
         return res.status(500).json({
@@ -124,19 +117,6 @@ exports.addActivityToCountry = async (req, res) => {
                 message: "Server error"
             }
         })
-    }
-    try {
-        const newData = await Country.findByPk(country.country_id, {
-            include: {
-                model: Activity,
-                // attributes: [ 'activity_id', 'name', 'difficulty', 'duration', 'season' ],
-                through: { attributes: [] },
-                include: { model: Season, through: { attributes: [] } }
-            }
-        })
-        return res.status(201).json(newData)
-    } catch (error) {
-        console.log(error)
     }
 }
 
@@ -152,9 +132,7 @@ exports.removeActivityFromCountry = async (req, res) => {
         })
         const country = await Country.findByPk(c_id, {
             include: {
-                model: Activity,
-                // attributes: [ 'activity_id', 'name', 'difficulty', 'duration', 'season' ],
-                through: { attributes: [] },
+                model: Activity, through: { attributes: [] },
                 include: { model: Season, through: { attributes: [] } }
             }
         })
