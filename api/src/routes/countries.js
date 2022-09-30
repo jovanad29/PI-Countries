@@ -9,14 +9,14 @@ const {
 } = require('../controllers/countries');
 
 
-router.get('/countries', (req,res) => {
-    if (req.query.name){
-        return getCountryByName(req,res)
+router.get('/', (req, res) => {
+    if (req.query.name) {
+        return getCountryByName(req, res)
     }
-    return getCountries(req,res)
+    return getCountries(req, res)
 })
-router.get('/countries/:id', getCountryById)
-router.post('/countries/:c_id/activities/:a_id', addActivityToCountry)
-router.delete('/countries/:c_id/activities/:a_id', removeActivityFromCountry)
+router.get('/:id', getCountryById)
+router.post('/:c_id/activities/:a_id', addActivityToCountry)
+router.delete('/:c_id/activities/:a_id', removeActivityFromCountry)
 
 module.exports = router

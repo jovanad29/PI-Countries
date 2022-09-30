@@ -10,11 +10,11 @@ const {
 } = require('../controllers/activities');
 
 
-router.get('/activities', getActivities)
-router.get('/activities/:id', getActivityById)
-router.post('/activities', postActivity)
-router.post('/activities/:a_id/countries/:c_id', addCountryToActivity)
-router.put('/activities/:id', updateActivity)
-router.delete('/activities/:a_id/countries/:c_id', removeCountryFromActivity)
+router.get('/', getActivities)
+router.get('/:id', getActivityById)
+router.post('/', postActivity)
+router.post('/:a_id/countries/:c_id', addCountryToActivity)
+router.put('/:id', updateActivity)
+router.delete('/:a_id/countries/:c_id', removeCountryFromActivity)
 
 module.exports = router
