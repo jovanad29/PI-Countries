@@ -30,10 +30,7 @@ conn.sync({ force: true }).then( async () => {
         seasons.forEach(async s => await Season.create({name: s}))
     } catch (error) {
         console.log("Error while adding seasons")
-        console.log(error)
-        
-    } finally{
-        console.log(`${await Season.count()} seasons added`)
+        console.log(error)        
     }
     console.log('End of synchronization')
 }).catch(e => {
