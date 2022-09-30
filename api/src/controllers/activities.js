@@ -7,11 +7,10 @@ exports.getActivities = async (req, res) => {
     try {
         const activities = await Activity.findAll(
             {
-                include: {
-                    model: Country,
-                    attributes: [ 'country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population' ],
-                    through: { attributes: [] }
-                },
+                include: [
+                    { model: Country, through: { attributes: [] } },
+                    { model: Season, through: { attributes: [] } }
+                ],
                 order: [
                     [ 'name', 'ASC' ]
                 ]
@@ -31,11 +30,10 @@ exports.getActivityById = async (req, res) => {
     const { id } = req.params
     try {
         const activity = await Activity.findByPk(id, {
-            include: {
-                model: Country,
-                attributes: [ 'country_id', 'name', 'flag_img', 'continent', 'capital', 'subregion', 'area', 'population' ],
-                through: { attributes: [] }
-            }
+            include: [
+                { model: Country, through: { attributes: [] } },
+                { model: Season, through: { attributes: [] } }
+            ]
         })
         if (activity === null) return res.status(404).json({
             error: {
@@ -100,7 +98,12 @@ exports.postActivity = async (req, res) => {
             const season = await Season.findOne({ where: { name: s } })
             if (season) await season.addActivity(activity)
         });
-        const newActivity = await Activity.findByPk(activity.activity_id, { include: [ Country, Season ] })
+        const newActivity = await Activity.findByPk(activity.activity_id, {
+            include: [
+                { model: Country, through: { attributes: [] } },
+                { model: Season, through: { attributes: [] } }
+            ]
+        })
         return res.status(201).json(newActivity)
     } catch (error) {
         console.log(error)
@@ -136,7 +139,12 @@ exports.updateActivity = async (req, res) => {
                 }
             }
         )
-        const updatedActivity = await Activity.findByPk(id)
+        const updatedActivity = await Activity.findByPk(id, {
+            include: [
+                { model: Country, through: { attributes: [] } },
+                { model: Season, through: { attributes: [] } }
+            ]
+        })
         seasons.forEach(async s => {
             console.log(s)
             try {
