@@ -1,7 +1,7 @@
 
-const { conn } = require('./src/db.js');
-const { Country } = require('./src/db') 
-const axios = require('axios')
+const { conn } = require('../src/db.js');
+const { Country, Season } = require('../src/db') 
+const axios = require('axios');
 
 conn.sync({ force: true }).then( async () => {
     try {
@@ -20,13 +20,23 @@ conn.sync({ force: true }).then( async () => {
         })
         await Country.bulkCreate(countries)        
     } catch (error) {
-        console.log("Error con db")
+        console.log("Error while adding countries")
         console.log(error)
     } finally{
-        console.log(`${await Country.count()} rows added`)
-        console.log('End of Sync')
+        console.log(`${await Country.count()} countries added`)
     }
+    try {
+        const seasons = ['Summer', 'Fall', 'Winter', 'Spring']
+        seasons.forEach(async s => await Season.create({name: s}))
+    } catch (error) {
+        console.log("Error while adding seasons")
+        console.log(error)
+        
+    } finally{
+        console.log(`${await Season.count()} seasons added`)
+    }
+    console.log('End of synchronization')
 }).catch(e => {
-    console.log("Error con sync")
+    console.log("Error while synchronizing")
     console.log(e)
 });
