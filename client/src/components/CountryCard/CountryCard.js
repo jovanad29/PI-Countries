@@ -15,9 +15,8 @@ const CountryCard = (props) => {
 				<h3>{name.length > 19 ? name.slice(0, 20) + '...' : name}</h3>
 				<div className={styles.description}>
 					<p><strong>Continent: </strong>{continent}</p>
-					<p><strong>Population: </strong>{population}</p>
+					<p><strong>Population: </strong>{new Intl.NumberFormat('en-US').format(population)}</p>
 				</div>
-				{/* <Link to={`/country/${country_id}`} className={`btn ${styles.btnOutline}`}>More</Link> */}
 			</section>
 		</Link>
 	)
