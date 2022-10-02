@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 import styles from './LandingPage.module.css'
 
 function LandingPage() {
-  return (
-    <div className={styles.container}>
-      <div className={styles.textContainer}>
-          <h1>Henry Countries</h1>
-          <h2>Individual Proyect</h2>
-          <Link to='/home' className='btn btn-primary'>Let's Travel!</Link>
-      </div>
-    </div>
-  )
+	return (
+		<section className={styles.container}>
+			{/* <article className={styles.textContainer}> */}
+			<h1>Individual Project Henry Countries</h1>
+			<h2>Developed by Jovana Davalillo with ❤</h2>
+			<Link to='/home' className='btn btn-primary'>Let's Travel!</Link>
+			{/* </article> */}
+		</section>
+	)
 }
 
 export default LandingPage
