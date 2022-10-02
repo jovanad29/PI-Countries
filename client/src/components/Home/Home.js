@@ -24,10 +24,11 @@ const Home = () => {
 	useEffect(() => {
 		setPage(1)
 	}, [ countries.length ])
+	let shownCountries = countries.slice(((nPage - 1) * perPage), (((nPage - 1) * perPage) + perPage))
 	return (
 		<>
 			<NavBar />
-			{/* <Filters /> */}
+			<Filters />
 			<div className={styles.container}>
 				<Pagination nPage={nPage} setPage={setPage} nPages={nPages} />
 				<div className={styles.cardsContainer}>
