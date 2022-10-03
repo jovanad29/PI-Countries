@@ -107,7 +107,7 @@ const CountryDetail = () => {
 											</div>
 										)
 									})
-									: <p>No activites registered</p>
+									: <h3>No activites registered</h3>
 							}
 						</section>
 					</>
