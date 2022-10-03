@@ -1,7 +1,8 @@
 import instance from '../utils'
-export const getCountryDetails = async (id) => {
+
+export const postActivity = async (activity) => {
     try {
-        const { data } = await instance.get("/countries/" + id)
+        const { data } = await instance.post('/activities', activity)
         return data
     } catch (error) {
         throw new Error(error.response.data.error.message)
