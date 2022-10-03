@@ -7,17 +7,17 @@ import FormActivity from './components/FormActivity/FormActivity';
 import NotFound from './components/NotFound/NotFound';
 
 function App() {
-  return (
-    <div className='App'>
-      <Switch>
-        <Route path='/home' component={Home} exact />
-        <Route path='/country/:id' render={(props) => <CountryDetail {...props} />} />
-        <Route path='/activity/create' component={FormActivity} />
-        <Route path='/' component={LandingPage} exact />
-        <Route path='*' component={NotFound} />
-      </Switch>
-    </div>
-  )
+	return (
+		<div className='App' id='app'>
+			<Switch>
+				<Route path='/home' component={Home} exact />
+				<Route path='/country/:id' render={(props) => <CountryDetail {...props} />} />
+				<Route path='/activity/create' component={FormActivity} />
+				<Route path='/' component={LandingPage} exact />
+				<Route path='*' component={NotFound} />
+			</Switch>
+		</div>
+	)
 }
 
 export default App;
