@@ -1,33 +1,24 @@
-
 .container {
-    /* width: 2.5rem; */
-    padding-bottom: 2rem;
-    /* margin: 1rem auto; */
-    /* background-color: red; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 1em;
+    margin: 2rem 0;
+    transition-duration: 0.3s;
 }
-.container > * {
-    margin: 0 1rem;
-}
-.doubleArrow {
-    padding: .4em;
-    font-weight: bold;
-    font-size: 1.8rem;
-}
-button {
+
+.pgBtn {
     border: none;
     background-color: white;
-    border-radius: 8px;
-    padding: .2em;
+    border-radius: 16px;
+    padding: .2em .7em 0 .7em;
     cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
 }
+
 button:hover {
+    transition-duration: 0.3s;
     background-color: rgba(255, 255, 255, 0.8);
-}
-.container span {
-    display: block;
-    width: 6.5rem;
 }
