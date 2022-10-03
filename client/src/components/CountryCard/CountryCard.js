@@ -5,7 +5,7 @@ import styles from './CountryCard.module.css'
 
 
 const CountryCard = (props) => {
-	const { country_id, name, continent, flag_img, population } = props
+	const { country_id, name, continent, flag_img, population, capital } = props
 	const tagName = name.length > 18
 		?
 		<h3 style={{ fontSize: '1.8rem', marginBottom: '1.15em' }}>{name}</h3>
@@ -20,6 +20,7 @@ const CountryCard = (props) => {
 				{tagName}
 				<div className={styles.description}>
 					<p><strong>Continent: </strong>{continent}</p>
+					<p><strong>Capital: </strong>{capital}</p>
 					<p><strong>Population: </strong>{new Intl.NumberFormat('en-US').format(population)}</p>
 				</div>
 			</section>
