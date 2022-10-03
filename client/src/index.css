@@ -28,7 +28,7 @@ html {
 body {
   position: relative;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   min-height: 100vh;
   height: -webkit-fill-available;
 }
@@ -103,7 +103,7 @@ select {
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   transition-duration: 0.3s;
 }
 
