@@ -1,5 +1,5 @@
 .container {
-    margin: 9.7rem 0 2.5rem 0;
+    margin: 2.5rem 0;
 }
 
 .container div {
@@ -9,8 +9,4 @@
 
 .select {
     margin-top: .5rem;
-}
-
-select:focus {
-    outline: none;
 }
