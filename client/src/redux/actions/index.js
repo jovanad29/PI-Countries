@@ -1,5 +1,5 @@
 
-const instance = require('../../utils')
+const fetch = require('../../utils')
 
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES'
 export const GET_COUNTRIES_BY_NAME = 'GET_COUNTRIES_BY_NAME'
@@ -14,7 +14,7 @@ export const DELETE_COUNTRY_FROM_ACTIVITY = 'DELETE_COUNTRY_FROM_ACTIVITY'
 export const getCountries = () => {
     return async (dispatch) => {
         try {
-            const { data } = await instance.get('/countries')
+            const { data } = await fetch.get('/countries')
             return dispatch({ type: GET_ALL_COUNTRIES, payload: data })
         } catch (error) {
             console.log(error)
@@ -26,7 +26,7 @@ export const getCountries = () => {
 export const getCountriesByName = (searched) => {
     return async (dispatch) => {
         try {
-            const { data } = await instance.get('/countries?name=' + searched)
+            const { data } = await fetch.get('/countries?name=' + searched)
             return dispatch({ type: GET_COUNTRIES_BY_NAME, payload: data })
         } catch (error) {
             return dispatch({ type: GET_COUNTRIES_BY_NAME, payload: [], error })
@@ -45,7 +45,7 @@ export const orderByCriteria = (value) => {
 // export function createActivity(payload) {
 //     return async (dispatch) => {
 //         try {
-//             var { data } = await instance.post('/activities', payload)
+//             var { data } = await fetch.post('/activities', payload)
 //             return dispatch({ type: CREATE_ACTIVITY, payload: data })
 //         } catch (error) {
 //             return dispatch({ type: CREATE_ACTIVITY, payload: error.data.values, error })
@@ -56,7 +56,7 @@ export const orderByCriteria = (value) => {
 export const getActivities = () => {
     return async (dispatch) => {
         try {
-            const { data } = await instance.get('/activities')
+            const { data } = await fetch.get('/activities')
             return dispatch({ type: GET_ALL_ACTIVITIES, payload: data })
         } catch (error) {
             return dispatch({ type: GET_ALL_ACTIVITIES, payload: [], error })
@@ -67,7 +67,7 @@ export const getActivities = () => {
 export const deleteActivityFromCountry = (a_id, c_id) => {
     return async (dispatch) => {
         try {
-            const { data } = await instance.delete(`/countries/${c_id}/activities/${a_id}`)
+            const { data } = await fetch.delete(`/countries/${c_id}/activities/${a_id}`)
             return dispatch({ type: DELETE_ACTIVITY_FROM_COUNTRY, payload: data })
         } catch (error) {
             return dispatch({ type: DELETE_ACTIVITY_FROM_COUNTRY, payload: [], error })
