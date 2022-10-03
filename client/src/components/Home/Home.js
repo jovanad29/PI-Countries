@@ -9,6 +9,7 @@ import Pagination from '../Pagination/Pagination'
 import styles from './Home.module.css'
 import Loader from '../Loader/Loader'
 import { IoArrowUp, IoArrowDown } from "react-icons/io5";
+import { Footer } from '../Footer/Footer'
 
 const Home = () => {
 	const { countries, error } = useSelector((state) => ({
@@ -27,7 +28,7 @@ const Home = () => {
 		}
 	}, [ dispatch ])
 	const [ nPage, setPage ] = useState(1)
-	const perPage = 8
+	const perPage = 10
 	let nPages = Math.ceil(countries.length / perPage)
 	useEffect(() => {
 		setPage(1)
@@ -62,8 +63,9 @@ const Home = () => {
 							</div>
 					}
 				</div>
-				{/* <Pagination nPage={nPage} setPage={setPage} nPages={nPages} /> */}
+				<Pagination nPage={nPage} setPage={setPage} nPages={nPages} />
 			</div>
+			<Footer />
 		</>
 	)
 }

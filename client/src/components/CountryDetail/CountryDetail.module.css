@@ -1,7 +1,7 @@
 .container {
     position: relative;
     width: 80%;
-    margin: 12rem auto 4rem auto;
+    margin: 5rem auto 14.4rem auto;
 }
 
 .description {
@@ -19,7 +19,7 @@
 
 .flag {
     display: block;
-    width: 100%;
+    width: 80%;
     height: auto;
 }
 
@@ -41,7 +41,6 @@
 }
 
 .activityGrid {
-    /* margin: 0 auto; */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-row-gap: 2rem;
@@ -58,11 +57,17 @@
     padding: 1.5em;
 }
 
+.box {
+    margin-top: 1rem;
+    text-align: center;
+}
+
 .seasons li {
     list-style-type: none;
     display: flex;
     flex-direction: row;
     gap: .5em;
+    margin: 1rem 0;
 }
 
 .season li img {
@@ -73,5 +78,6 @@
     /* width: 100%; */
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
 }

@@ -6,9 +6,9 @@ import styles from './CountryCard.module.css'
 
 const CountryCard = (props) => {
 	const { country_id, name, continent, flag_img, population, capital } = props
-	const tagName = name.length > 18
+	const tagName = name.length > 16
 		?
-		<h3 style={{ fontSize: '1.8rem', marginBottom: '1.15em' }}>{name}</h3>
+		<h3 style={{ fontSize: '1.6rem', marginBottom: '1.15em' }}>{name}</h3>
 		:
 		<h3>{name}</h3>
 	return (

@@ -4,11 +4,12 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 99;
     padding: 1.5rem 2.5rem;
+    background-color: rgba(0, 0, 0, .8);
 }
 
 #appTitle {
@@ -16,10 +17,10 @@ header {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1em;
 }
 
 #appTitle>svg {
-    height: 5rem;
-    width: 5rem;
+    height: 3rem;
+    width: 3rem;
 }

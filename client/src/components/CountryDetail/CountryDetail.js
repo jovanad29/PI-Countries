@@ -8,7 +8,8 @@ import Loader from '../Loader/Loader'
 import { useDispatch } from 'react-redux'
 import { deleteActivityFromCountry } from '../../redux/actions'
 import { getCountryDetails } from '../../services/getCountryDetails'
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from 'react-icons/fa'
+import { Footer } from '../Footer/Footer'
 
 const CountryDetail = () => {
 	const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const CountryDetail = () => {
 	useEffect(() => {
 		document.getElementById('app').classList.add('filter')
 		document.getElementById('app').classList.add('border')
-		getCountryDetails(id).then(c => setDetail(c)).catch(e => console.log(e))
+		getCountryDetails(id).then(c => setDetail(c)).catch(e => alert(e))
 		return () => {
 			document.getElementById('app').classList.remove('filter')
 			document.getElementById('app').classList.remove('border')
@@ -34,7 +35,7 @@ const CountryDetail = () => {
 	if (!Object.keys(detail).length) return (<><NavBar /><Loader /></>)
 	return (
 		<>
-			<NavBar />
+			{/* <NavBar /> */}
 			<section className={styles.container}>
 				<div className='back-btn'>
 					<Link to='/home' className='btn btn-secondary'>Back to Home</Link>
@@ -87,13 +88,13 @@ const CountryDetail = () => {
 													</li>
 													<li>
 														<strong>Seasons:</strong>
-														<div className={styles.box} key={Math.random()}>
+														<div key={Math.random()}>
 															<ul className={styles.seasons}>
 																{
 																	a.seasons.map(s => {
 																		return (
 																			<li key={Math.random()}>
-																				<img src={s.icon} alt={`${s.name} icon`} width={24} />
+																				<img src={s.icon_clr} alt={`${s.name} icon`} width={24} />
 																				<p>{s.name}</p>
 																			</li>
 																		)
@@ -112,6 +113,7 @@ const CountryDetail = () => {
 					</>
 				}
 			</section>
+			<Footer />
 		</>
 	)
 }

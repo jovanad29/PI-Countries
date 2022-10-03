@@ -6,6 +6,7 @@
 	width: 18em;
 	backdrop-filter: blur(5px);
 	transition-duration: 0.3s;
+	height: 26rem;
 }
 
 .card img {
