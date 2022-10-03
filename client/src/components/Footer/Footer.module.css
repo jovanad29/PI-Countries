@@ -1,0 +1,19 @@
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    padding: 1.5rem 2.5rem;
+    background-color: #ffd700;
+    color: black;
+}
+
+.social svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1.5rem;
+}
