@@ -14,7 +14,15 @@ footer {
 }
 
 .social svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
     margin-left: 1.5rem;
+}
+
+@media (max-width: 40rem) {
+    .social svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 1.5rem;
+    }
 }
