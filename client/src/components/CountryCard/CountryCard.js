@@ -5,15 +5,27 @@ import styles from './CountryCard.module.css'
 
 
 const CountryCard = (props) => {
-  const {country_id, name, continent, flag_img} = props
-  return (
-    <div className={styles.card}>
-      <p>{name.length > 19 ? name.slice(0,20)+'...' : name}</p>
-      <img src={flag_img[1]} alt='country flag' />
-      <p>{continent}</p>
-      <Link to={`/country/${country_id}`} className={`btn ${styles.btnOutline}`}>More</Link>
-    </div>
-  )
+	const { country_id, name, continent, flag_img, population, capital } = props
+	const tagName = name.length > 15
+		?
+		<h2 className={styles.cardTitle}>{name.slice(0, 15) + '...'}</h2>
+		:
+		<h2 className={styles.cardTitle}>{name}</h2>
+	return (
+		<Link to={`/country/${country_id}`}>
+			<section className={styles.card}>
+				<figure>
+					<img src={flag_img[ 1 ]} alt='country flag' />
+				</figure>
+				{tagName}
+				<div className={styles.description}>
+					<p><strong>Continent: </strong>{continent}</p>
+					<p><strong>Capital: </strong>{capital.join(', ')}</p>
+					<p><strong>Population: </strong>{new Intl.NumberFormat('en-US').format(population)}</p>
+				</div>
+			</section>
+		</Link>
+	)
 }
 
 export default CountryCard

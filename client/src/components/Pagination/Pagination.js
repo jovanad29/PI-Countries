@@ -1,40 +1,43 @@
 
 import React from 'react'
 import styles from './Pagination.module.css'
+import { BiArrowToLeft, BiArrowToRight, BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
-function Pagination({nPage, setPage, nPages, lPage}) {
-    const nextPage = () => {
+function Pagination({ nPage, setPage, nPages }) {
+    const nextPage = (e) => {
         if (nPage < nPages) {
             setPage(nPage + 1)
+        } else {
+            return false
         }
-        return false
     }
-    const prevPage = () => {
+    const prevPage = (e) => {
         if (nPage > 1) {
             setPage(nPage - 1)
+        } else {
+            return false
         }
-        return false
     }
-    const firstPage = () => {
+    const firstPage = (e) => {
         setPage(1)
     }
     const lastPage = () => {
-        setPage(lPage)
+        setPage(nPages)
     }
     return (
         <div className={styles.container}>
-            <button className={styles.doubleArrow} onClick={firstPage}>
-                {"<<"}
+            <button className={styles.pgBtn} onClick={firstPage} disabled={nPage === 1 ? true : false}>
+                <BiArrowToLeft />
             </button>
-            <button onClick={prevPage}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="arcs"><path d="M15 18l-6-6 6-6"></path></svg>
+            <button className={styles.pgBtn} onClick={prevPage} disabled={nPage === 1 ? true : false}>
+                <BiLeftArrowAlt />
             </button>
             <span>{nPage} / {nPages}</span>
-            <button onClick={nextPage}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="arcs"><path d="M9 18l6-6-6-6"></path></svg>
+            <button className={styles.pgBtn} onClick={nextPage} disabled={nPage === nPages ? true : false}>
+                <BiRightArrowAlt />
             </button>
-            <button className={styles.doubleArrow} onClick={lastPage}>
-                {">>"}
+            <button className={styles.pgBtn} onClick={lastPage} disabled={nPage === nPages ? true : false}>
+                <BiArrowToRight />
             </button>
         </div>
     )
