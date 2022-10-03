@@ -18,7 +18,14 @@ module.exports = (sequelize) => {
 				is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
 			}
 		},
-		icon: {
+		icon_clr: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: {
+				isUrl: true
+			}
+		},
+		icon_bw: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
