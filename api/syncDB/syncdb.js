@@ -27,17 +27,18 @@ conn.sync({ force: true }).then(async () => {
     }
     try {
         const seasons = [
-            { name: 'Summer', icon: 'https://i.ibb.co/9Ym2qRm/sun.png' },
-            { name: 'Fall', icon: 'https://i.ibb.co/1Jjvwjq/autumn-tree-leaves.png' },
-            { name: 'Winter', icon: 'https://i.ibb.co/Y7wRg9V/snowflake.png' },
-            { name: 'Spring', icon: 'https://i.ibb.co/tzR6Y24/sakura.png' }
+            { name: 'Summer', icon_clr: 'https://i.ibb.co/9Ym2qRm/sun.png', icon_bw: 'https://i.ibb.co/Vp6sYRK/sun-1.png' },
+            { name: 'Fall', icon_clr: 'https://i.ibb.co/1Jjvwjq/autumn-tree-leaves.png', icon_bw: 'https://i.ibb.co/Yf3LK2t/leaf.png' },
+            { name: 'Winter', icon_clr: 'https://i.ibb.co/Y7wRg9V/snowflake.png', icon_bw: 'https://i.ibb.co/ZVQBDDp/snowflake-1.png' },
+            { name: 'Spring', icon_clr: 'https://i.ibb.co/tzR6Y24/sakura.png', icon_bw: 'https://i.ibb.co/1RkJ953/flower.png' }
         ]
-        seasons.forEach(async s => await Season.create({ name: s.name, icon: s.icon }))
+        seasons.forEach(async s => await Season.create({ name: s.name, icon_clr: s.icon_clr, icon_bw: s.icon_bw }))
     } catch (error) {
         console.log("Error while adding seasons")
         console.log(error)
+    } finally {
+        console.log('End of synchronization')
     }
-    console.log('End of synchronization')
 }).catch(e => {
     console.log("Error while synchronizing")
     console.log(e)
