@@ -1,6 +1,6 @@
 .container {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 9.7rem auto;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
