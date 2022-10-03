@@ -114,7 +114,7 @@ const FormActivity = () => {
 							<div className={styles.fields}>
 								<div className={styles.field}>
 									<label>Name:</label>
-									<input onChange={handleChange} type='text' name='name' value={activity.name} />
+									<input autocomplete='off' onChange={handleChange} type='text' name='name' value={activity.name} />
 									{errors.name ? <small className='error'>{errors.name}</small> : <small>&nbsp;</small>}
 								</div>
 								<div className={styles.field}>
